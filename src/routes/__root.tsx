@@ -33,10 +33,14 @@ export const Route = createRootRoute({
       { name: "description", content: "Az emberi intelligencia védelme az AI korszakában. Vállalati tréningek, AI adoption és kognitív biztonság." },
       { name: "author", content: "Kemenes Andrea Sophie" },
       { property: "og:title", content: "CriticalThinking.hu — Kritikus Gondolkodás & Digitális Tudatosság" },
-      { property: "og:description", content: "Az emberi intelligencia védelme az AI korszakában." },
+      { property: "og:description", content: "Az emberi intelligencia védelme az AI korszakában. Vállalati tréningek, AI adoption és kognitív biztonság." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "CriticalThinking.hu — Kritikus Gondolkodás & Digitális Tudatosság" },
+      { name: "twitter:description", content: "Az emberi intelligencia védelme az AI korszakában. Vállalati tréningek, AI adoption és kognitív biztonság." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee6ae32d-dbb9-4e05-87ce-92bd6b56f099/id-preview-30e48a35--819ba58c-e6b6-4ed4-b6b0-2439d27b57ff.lovable.app-1777642154968.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee6ae32d-dbb9-4e05-87ce-92bd6b56f099/id-preview-30e48a35--819ba58c-e6b6-4ed4-b6b0-2439d27b57ff.lovable.app-1777642154968.png" },
     ],
     links: [
       {
