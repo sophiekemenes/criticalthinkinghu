@@ -6,4 +6,12 @@
 // You can pass additional config via defineConfig({ vite: { ... } }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig();
+export default defineConfig({
+  // A TanStack Start konfigurációja
+  deploymentStrategy: "static",
+  
+  // A Vite konfigurációja (ha szükséges)
+  vite: {
+    base: "/",
+  }
+});
