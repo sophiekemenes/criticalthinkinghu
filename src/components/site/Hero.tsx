@@ -61,7 +61,7 @@ export function Hero() {
             href="#andrea"
             className="inline-flex items-center px-7 py-3.5 rounded-full border border-ink/20 text-ink hover:border-terracotta hover:text-terracotta transition-colors"
           >
-            Megismerem Andreát
+            Megismerem Sophie-t
           </a>
         </motion.div>
       </div>
