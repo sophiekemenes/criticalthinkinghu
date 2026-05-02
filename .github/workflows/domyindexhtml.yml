@@ -30,19 +30,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
+      - name: Build (GitHub Pages SPA)
+        run: npm run build:ghpages
 
-      - name: Nyomozás (Mappák listázása)
+      - name: Prepare static output
         run: |
-          echo "--- MI VAN A FŐKÖNYVTÁRBAN? ---"
-          ls -F
-          echo "--- MI VAN A DIST MAPPÁBAN? ---"
-          ls -R dist || echo "Nincs dist mappa"
-          echo "--- MI VAN A .OUTPUT MAPPÁBAN? ---"
-          ls -R .output || echo "Nincs .output mappa"
-          echo "--- MI VAN A BUILD MAPPÁBAN? ---"
-          ls -R build || echo "Nincs build mappa"
+          # GitHub Pages a gyökérben index.html-t vár
+          mv dist-ghpages/index.spa.html dist-ghpages/index.html
+          # SPA fallback: minden ismeretlen route is az index.html-t kapja
+          cp dist-ghpages/index.html dist-ghpages/404.html
+          # GitHub Pages ne futtasson Jekyll-t (különben az _-kezdetű asseteket szűri)
+          touch dist-ghpages/.nojekyll
+          # Custom domain átmásolása
+          if [ -f CNAME ]; then cp CNAME dist-ghpages/CNAME; fi
+          echo "--- Output mappa tartalma: ---"
+          ls -la dist-ghpages/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -50,9 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Ha a nyomozás során kiderül, hogy nem a dist-be épít, 
-          # ezt az egy sort kell majd módosítanod:
-          path: './.output/public'
+          path: './dist-ghpages'
 
   deploy:
     needs: build
