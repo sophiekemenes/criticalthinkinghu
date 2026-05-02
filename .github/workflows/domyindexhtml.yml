@@ -52,7 +52,7 @@ jobs:
         with:
           # Ha a nyomozás során kiderül, hogy nem a dist-be épít, 
           # ezt az egy sort kell majd módosítanod:
-          path: './dist'
+          path: './dist/client'
 
   deploy:
     needs: build
