@@ -35,9 +35,32 @@ export function Andrea() {
           </p>
         </FadeUp>
 
+        {/* Name + title on top */}
+        <FadeUp delay={0.05} className="mb-12 md:mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+            Kemenes Andrea Sophie
+          </h2>
+          <p className="text-terracotta-deep italic font-serif mt-2 text-lg">
+            Human Engagement Architect
+          </p>
+        </FadeUp>
+
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 mb-24 items-center">
+          {/* Venn portrait */}
+          <FadeUp delay={0.1} className="lg:col-span-5">
+            <div className="relative">
+              <div className="absolute -inset-6 bg-gradient-sunset rounded-full opacity-15 blur-3xl" />
+              <img
+                src={vennPortrait}
+                alt="Kemenes Andrea Sophie — a digitális valóság, idegtudomány és kibervédelem metszéspontjában"
+                className="relative w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </FadeUp>
+
           {/* Quote */}
-          <FadeUp delay={0.1} className="lg:col-span-6 order-2 lg:order-1">
+          <FadeUp delay={0.2} className="lg:col-span-7">
             <blockquote className="relative">
               <span className="font-serif text-7xl md:text-9xl text-terracotta/30 leading-none absolute -top-6 -left-2">
                 “
@@ -53,33 +76,6 @@ export function Andrea() {
                 marketing üzenet vagy egy digitális támadás.
               </p>
             </blockquote>
-
-            <div className="mt-10 pl-8 md:pl-12">
-              <h2 className="font-serif text-3xl md:text-4xl leading-tight">
-                Kemenes Andrea Sophie
-              </h2>
-              <p className="text-terracotta-deep italic font-serif mt-1">
-                Human Engagement Architect
-              </p>
-              <p className="mt-5 text-sm text-ink-soft leading-relaxed max-w-md">
-                Három diszciplína metszéspontjában — a digitális valóság, az idegtudomány és a
-                kibervédelem találkozásánál — egyetlen kulcs nyitja a kaput:{" "}
-                <span className="italic text-ink">a tudatosság.</span>
-              </p>
-            </div>
-          </FadeUp>
-
-          {/* Venn portrait */}
-          <FadeUp delay={0.2} className="lg:col-span-6 order-1 lg:order-2">
-            <div className="relative">
-              <div className="absolute -inset-6 bg-gradient-sunset rounded-full opacity-15 blur-3xl" />
-              <img
-                src={vennPortrait}
-                alt="Kemenes Andrea Sophie — a digitális valóság, idegtudomány és kibervédelem metszéspontjában"
-                className="relative w-full h-auto"
-                loading="lazy"
-              />
-            </div>
           </FadeUp>
         </div>
 
