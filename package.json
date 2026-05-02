@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "tanstack-start build --preset=static",
+    "build": "vite build --mode production",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
