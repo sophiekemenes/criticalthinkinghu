@@ -7,9 +7,6 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  // A TanStack Start konfigurációja
-  deploymentStrategy: "static",
-  
   // A Vite konfigurációja (ha szükséges)
   vite: {
     base: "/",
