@@ -1,8 +1,6 @@
-import { useState } from "react";
-import { Crown, Mail, Send } from "lucide-react";
-import { z } from "zod";
-import { toast } from "sonner";
+import { Crown, Mail } from "lucide-react";
 import { FadeUp } from "./FadeUp";
+import andreaStage from "@/assets/andrea-stage.png";
 
 const schema = z.object({
   name: z
