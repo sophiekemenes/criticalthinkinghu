@@ -56,6 +56,11 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 
 Jelenleg **két, egymástól független** deploy-út létezik ebben a projektben. Fontos tudni, melyik szolgálja ki a domaint, mert a lehetőségeik különböznek.
 
+> **2026. augusztusi döntés:** a Lovable hosting út le van zárva — nem használjuk,
+> nincs rá előfizetés. A **GitHub Pages az egyetlen hivatalos élő verzió**.
+> Ha kell működő kapcsolati form, ingyenes külső szolgáltatást (pl. Formspree)
+> kötünk be a statikus oldalba — nem váltunk Lovable hostingra.
+
 ### A) Lovable hosting
 
 - URL: `https://criticalthinkinghu.lovable.app`
