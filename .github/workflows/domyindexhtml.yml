@@ -35,8 +35,9 @@ jobs:
 
       - name: Prepare static output
         run: |
-          # GitHub Pages a gyökérben index.html-t vár
-          mv dist-ghpages/index.spa.html dist-ghpages/index.html
+          # A build:ghpages (benne a prerender script) már valódi, renderelt
+          # index.html-eket ír route-onként — itt már csak a statikus
+          # kiszolgáláshoz kellő kiegészítők jönnek.
           # SPA fallback: minden ismeretlen route is az index.html-t kapja
           cp dist-ghpages/index.html dist-ghpages/404.html
           # GitHub Pages ne futtasson Jekyll-t (különben az _-kezdetű asseteket szűri)

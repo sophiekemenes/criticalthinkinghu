@@ -1,0 +1,18 @@
+<svg width="640" height="180" viewBox="0 0 640 180" xmlns="http://www.w3.org/2000/svg">
+  <title>criticalthinking.hu — logó, fehér/reverse sötét háttérre</title>
+  <rect x="0" y="0" width="640" height="180" fill="#161615"/>
+  <g transform="translate(30,30)">
+    <rect x="10" y="10" width="100" height="100" rx="16" fill="none" stroke="#F1EFE8" stroke-width="6"/>
+    <g transform="rotate(6 60 60)">
+      <rect x="23" y="23" width="74" height="74" rx="12" fill="none" stroke="#F1EFE8" stroke-width="6"/>
+    </g>
+    <g transform="rotate(-10 60 60)">
+      <rect x="37" y="37" width="46" height="46" rx="9" fill="none" stroke="#F1EFE8" stroke-width="6"/>
+    </g>
+    <circle cx="60" cy="60" r="10" fill="#E8794F"/>
+  </g>
+  <text x="200" y="103" font-family="Helvetica Neue, Arial, sans-serif" font-size="46" font-weight="500" letter-spacing="-1">
+    <tspan fill="#F1EFE8">critical</tspan><tspan fill="#E8794F">thinking</tspan><tspan fill="#F1EFE8">.hu</tspan>
+  </text>
+  <text x="200" y="130" font-family="Helvetica Neue, Arial, sans-serif" font-size="14" letter-spacing="1" fill="#B4B2A9">3 MENTÁLIS TŰZFAL</text>
+</svg>

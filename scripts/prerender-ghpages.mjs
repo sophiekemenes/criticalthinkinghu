@@ -1,0 +1,81 @@
+// Post-build step for the GitHub Pages static site.
+//
+// vite.config.ghpages.ts produces a plain client bundle whose index.spa.html
+// only contains an empty <div id="root"> plus the built <script>/<link>
+// tags. This script renders each known route to real HTML (via the Node SSR
+// bundle built from vite.config.ghpages.ssr.ts) and writes a fully-formed
+// static index.html per route, so crawlers get actual content without
+// running JS.
+//
+// The app's root route (src/routes/__root.tsx) defines a `shellComponent`
+// that renders the *entire* document (<html><head>...<body>...</body></html>),
+// matching how TanStack Start's real SSR entry works — so renderToString()
+// here already returns a complete HTML document, not a fragment to inject
+// into a div. <Scripts /> inside that shell has no build-manifest knowledge
+// in this bypassed context, so it renders no asset tags — we splice in the
+// <script>/<link> tags Vite already generated in index.spa.html ourselves.
+//
+// Run order (see package.json "build:ghpages"):
+//   1. vite build --config vite.config.ghpages.ts       -> dist-ghpages/
+//   2. vite build --config vite.config.ghpages.ssr.ts   -> dist-ghpages-ssr/
+//   3. node scripts/prerender-ghpages.mjs                -> rewrites dist-ghpages/
+
+import { readFile, writeFile, mkdir, rm } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+
+const root = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = path.resolve(root, "..");
+const distDir = path.join(projectRoot, "dist-ghpages");
+const ssrDir = path.join(projectRoot, "dist-ghpages-ssr");
+const templatePath = path.join(distDir, "index.spa.html");
+
+// One entry per route that should get a real, crawlable static HTML file.
+// Title/description come from each route's own head() config (rendered via
+// <HeadContent /> inside the SSR output) — no override needed here.
+const ROUTES = [
+  { path: "/", outFile: "index.html" },
+  // Added in Fázis D once the route exists:
+  // { path: "/cikkek/self-check-ai", outFile: "cikkek/self-check-ai/index.html" },
+];
+
+async function main() {
+  const { renderPage } = await import(
+    // Dynamic import() requires a file:// URL on Windows (a bare "C:\..."
+    // path throws ERR_UNSUPPORTED_ESM_URL_SCHEME under the default ESM loader).
+    pathToFileURL(path.join(ssrDir, "entry-prerender.js")).href
+  );
+
+  // Only the module <script> tag needs splicing in — the stylesheet link
+  // is already part of __root.tsx's head() `links` config, so <HeadContent />
+  // renders it correctly inside the SSR output on its own.
+  const template = await readFile(templatePath, "utf-8");
+  const scriptTag = template.match(/<script type="module"[^>]*><\/script>/)?.[0];
+  if (!scriptTag) {
+    throw new Error(
+      "Could not find the built <script> tag in index.spa.html — did the Vite output shape change?",
+    );
+  }
+
+  for (const route of ROUTES) {
+    const appHtml = await renderPage(route.path);
+    const withAssets = appHtml.replace("</body>", `${scriptTag}</body>`);
+    const page = `<!doctype html>\n${withAssets}\n`;
+
+    const outPath = path.join(distDir, route.outFile);
+    await mkdir(path.dirname(outPath), { recursive: true });
+    await writeFile(outPath, page, "utf-8");
+    console.log(`prerendered ${route.path} -> dist-ghpages/${route.outFile}`);
+  }
+
+  // index.spa.html itself was only a template; the real entry points are
+  // the per-route files written above. Remove it so it doesn't ship as dead
+  // weight (and so it can't shadow dist-ghpages/index.html).
+  await rm(templatePath, { force: true });
+  await rm(ssrDir, { recursive: true, force: true });
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

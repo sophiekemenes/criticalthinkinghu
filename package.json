@@ -7,8 +7,9 @@
     "dev": "vite dev",
     "build": "vite build --mode production",
     "build:dev": "vite build --mode development",
-    "build:ghpages": "vite build --config vite.config.ghpages.ts",
+    "build:ghpages": "vite build --config vite.config.ghpages.ts && vite build --config vite.config.ghpages.ssr.ts && node scripts/prerender-ghpages.mjs",
     "preview": "vite preview",
+    "preview:ghpages": "vite preview --config vite.config.ghpages.ts --port 4173",
     "lint": "eslint .",
     "format": "prettier --write ."
   },
