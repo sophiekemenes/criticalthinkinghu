@@ -36,18 +36,16 @@ export const Route = createRootRoute({
       { property: "og:description", content: "Az emberi intelligencia védelme az AI korszakában. Vállalati tréningek, AI adoption és kognitív biztonság." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "CriticalThinking.hu — Kritikus Gondolkodás & Digitális Tudatosság" },
       { name: "twitter:description", content: "Az emberi intelligencia védelme az AI korszakában. Vállalati tréningek, AI adoption és kognitív biztonság." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee6ae32d-dbb9-4e05-87ce-92bd6b56f099/id-preview-30e48a35--819ba58c-e6b6-4ed4-b6b0-2439d27b57ff.lovable.app-1777642154968.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ee6ae32d-dbb9-4e05-87ce-92bd6b56f099/id-preview-30e48a35--819ba58c-e6b6-4ed4-b6b0-2439d27b57ff.lovable.app-1777642154968.png" },
     ],
     links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Inter:wght@300;400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -63,7 +61,7 @@ export const Route = createRootRoute({
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="hu">
       <head>
         <HeadContent />
       </head>

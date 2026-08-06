@@ -45,20 +45,19 @@ export function FactsCarousel() {
 
   return (
     <section className="py-24 md:py-32 px-6 bg-ink text-cream relative overflow-hidden">
-      <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-terracotta/20 blur-3xl" />
-      <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-gold/10 blur-3xl" />
+      <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-coral/20 blur-3xl" />
+      <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-coral/10 blur-3xl" />
 
       <div className="mx-auto max-w-4xl relative">
         <FadeUp>
           <div className="flex items-center justify-center gap-3 mb-3">
-            <Lightbulb className="h-5 w-5 text-gold" strokeWidth={1.5} />
-            <p className="text-xs uppercase tracking-[0.25em] text-gold">Did you know?</p>
+            <Lightbulb className="h-5 w-5 text-coral" strokeWidth={1.5} />
+            <p className="text-xs uppercase tracking-[0.25em] text-coral">Did you know?</p>
           </div>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <h2 className="font-serif text-3xl md:text-5xl leading-tight text-center mb-16 text-balance">
-            Apró tények az{" "}
-            <span className="italic text-gold-soft">idegrendszeredről</span>.
+          <h2 className="font-display text-3xl md:text-5xl leading-tight text-center mb-16 text-balance">
+            Apró tények az <span className="accent-mark">idegrendszeredről</span>.
           </h2>
         </FadeUp>
 
@@ -74,10 +73,10 @@ export function FactsCarousel() {
                 transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                 className="w-full text-center px-12"
               >
-                <p className="text-[11px] uppercase tracking-[0.3em] text-terracotta-soft mb-6">
+                <p className="text-[11px] uppercase tracking-[0.3em] text-coral-soft mb-6">
                   {facts[i].cat}
                 </p>
-                <p className="font-serif text-2xl md:text-3xl leading-snug text-balance">
+                <p className="font-display text-2xl md:text-3xl leading-snug text-balance">
                   {facts[i].fact}
                 </p>
               </motion.div>
@@ -86,14 +85,14 @@ export function FactsCarousel() {
             <button
               onClick={() => go(-1)}
               aria-label="Előző tény"
-              className="absolute left-0 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full border border-cream/20 hover:border-gold hover:bg-gold/10 flex items-center justify-center transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full border border-cream/20 hover:border-coral hover:bg-coral/10 flex items-center justify-center transition-colors"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
             <button
               onClick={() => go(1)}
               aria-label="Következő tény"
-              className="absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full border border-cream/20 hover:border-gold hover:bg-gold/10 flex items-center justify-center transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 h-11 w-11 rounded-full border border-cream/20 hover:border-coral hover:bg-coral/10 flex items-center justify-center transition-colors"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -109,7 +108,7 @@ export function FactsCarousel() {
                 }}
                 aria-label={`${k + 1}. tény`}
                 className={`h-1 rounded-full transition-all ${
-                  k === i ? "w-8 bg-gold" : "w-1.5 bg-cream/20 hover:bg-cream/40"
+                  k === i ? "w-8 bg-coral" : "w-1.5 bg-cream/20 hover:bg-cream/40"
                 }`}
               />
             ))}

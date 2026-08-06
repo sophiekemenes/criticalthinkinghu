@@ -12,7 +12,7 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-display: 'Familjen Grotesk', system-ui, sans-serif;
   --font-sans: 'Inter', system-ui, sans-serif;
 
   --color-background: var(--background);
@@ -35,34 +35,40 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  /* Brand-specific tokens */
-  --color-terracotta: var(--terracotta);
-  --color-terracotta-soft: var(--terracotta-soft);
-  --color-terracotta-deep: var(--terracotta-deep);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
-  --color-cream: var(--cream);
+  /* Brand tokens — criticalthinking.hu arculati kit v2 */
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-stone: var(--stone);
+  --color-cream: var(--cream);
+  --color-coral: var(--coral);
+  --color-coral-soft: var(--coral-soft);
+  --color-coral-deep: var(--coral-deep);
+
+  /* Legacy tokens — kept as coral aliases only while AudienceSelector/
+     HumanVsAI/Jogsi still reference them; removed together with those
+     components in Fázis C. Do not use these in new code, use coral*. */
+  --color-terracotta: var(--coral);
+  --color-terracotta-soft: var(--coral-soft);
+  --color-terracotta-deep: var(--coral-deep);
+  --color-gold: var(--coral);
+  --color-gold-soft: var(--coral-soft);
 }
 
 :root {
   --radius: 0.5rem;
 
-  /* Brand palette — warm terracotta + gold on cream/navy */
-  --background: oklch(0.985 0.008 75);          /* warm cream */
-  --foreground: oklch(0.18 0.025 250);          /* deep ink navy */
+  /* Brand palette — criticalthinking.hu arculati kit v2 */
+  --ink: #161615;      /* Ink black */
+  --stone: #8A897F;    /* Stone gray */
+  --cream: #F1EFE8;    /* Bone white */
+  --coral: #D8542A;    /* Signal coral — the single accent color */
 
-  --cream: oklch(0.97 0.014 78);
-  --ink: oklch(0.18 0.025 250);
-  --ink-soft: oklch(0.30 0.03 250);
+  --ink-soft: var(--stone);
+  --coral-soft: color-mix(in oklab, var(--coral) 20%, var(--cream) 80%);
+  --coral-deep: color-mix(in oklab, var(--coral) 82%, var(--ink) 18%);
 
-  --terracotta: oklch(0.62 0.14 40);            /* warm terracotta */
-  --terracotta-soft: oklch(0.88 0.05 50);       /* soft peach blush */
-  --terracotta-deep: oklch(0.45 0.13 35);       /* roasted earth */
-
-  --gold: oklch(0.74 0.13 75);                  /* warm gold */
-  --gold-soft: oklch(0.92 0.06 85);             /* pale champagne */
+  --background: var(--cream);
+  --foreground: var(--ink);
 
   --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
@@ -71,28 +77,28 @@
 
   --primary: var(--ink);
   --primary-foreground: var(--cream);
-  --secondary: var(--terracotta-soft);
+  --secondary: var(--coral-soft);
   --secondary-foreground: var(--ink);
-  --muted: oklch(0.94 0.012 75);
-  --muted-foreground: oklch(0.45 0.02 250);
-  --accent: var(--terracotta);
+  --muted: color-mix(in oklab, var(--stone) 10%, var(--cream) 90%);
+  --muted-foreground: var(--stone);
+  --accent: var(--coral);
   --accent-foreground: var(--cream);
   --destructive: oklch(0.55 0.22 27);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.88 0.02 70);
-  --input: oklch(0.88 0.02 70);
-  --ring: var(--terracotta);
+  --border: color-mix(in oklab, var(--stone) 30%, var(--cream) 70%);
+  --input: color-mix(in oklab, var(--stone) 30%, var(--cream) 70%);
+  --ring: var(--coral);
 
-  --gradient-warm: linear-gradient(135deg, oklch(0.97 0.014 78), oklch(0.92 0.05 60));
-  --gradient-sunset: linear-gradient(135deg, var(--terracotta) 0%, var(--gold) 100%);
-  --shadow-soft: 0 4px 20px -8px color-mix(in oklab, var(--terracotta-deep) 25%, transparent);
+  --gradient-warm: linear-gradient(135deg, var(--cream), var(--coral-soft));
+  --gradient-sunset: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+  --shadow-soft: 0 4px 20px -8px color-mix(in oklab, var(--coral-deep) 25%, transparent);
   --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, var(--ink) 30%, transparent);
 }
 
 .dark {
-  --background: oklch(0.18 0.025 250);
-  --foreground: oklch(0.97 0.014 78);
-  --card: oklch(0.22 0.025 250);
+  --background: var(--ink);
+  --foreground: var(--cream);
+  --card: color-mix(in oklab, var(--ink) 85%, white 15%);
   --card-foreground: var(--foreground);
   --primary: var(--cream);
   --primary-foreground: var(--ink);
@@ -118,14 +124,14 @@
   }
 
   h1, h2, h3, h4, h5 {
-    font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 }
 
 @layer utilities {
-  .font-serif {
-    font-family: var(--font-serif);
+  .font-display {
+    font-family: var(--font-display);
   }
   .font-sans {
     font-family: var(--font-sans);
@@ -144,6 +150,15 @@
   }
   .shadow-elegant {
     box-shadow: var(--shadow-elegant);
+  }
+  /* Brand kit kiemelés-minta: "korall aláhúzás egyetlen kiemelt szón" —
+     szín + aláhúzás, nem italic. Lásd docs/brand. */
+  .accent-mark {
+    color: var(--color-coral);
+    text-decoration: underline;
+    text-decoration-color: var(--color-coral);
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.14em;
   }
   .grain {
     position: relative;

@@ -1,4 +1,11 @@
 <!doctype html>
+<!--
+  Vite build entry only (see vite.config.ghpages.ts rollupOptions.input).
+  scripts/prerender-ghpages.mjs discards this file's <head> entirely and
+  writes a real per-route index.html from the SSR-rendered output instead
+  (which gets its <head> from src/routes/__root.tsx's head() config) — so
+  editing the meta tags below has no effect on the shipped GitHub Pages site.
+-->
 <html lang="hu">
   <head>
     <meta charset="UTF-8" />

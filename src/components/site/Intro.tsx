@@ -5,14 +5,14 @@ export function Intro() {
     <section id="bemutatkozas" className="py-28 md:py-40 px-6 relative">
       <div className="mx-auto max-w-4xl">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-terracotta-deep mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-6">
             Bemutatkozás
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12 text-balance">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-12 text-balance">
             A tudatosság nem luxus, hanem az evolúciónk{" "}
-            <span className="italic text-terracotta-deep">következő lépésének a záloga.</span>
+            <span className="accent-mark">következő lépésének a záloga.</span>
           </h2>
         </FadeUp>
         <div className="grid md:grid-cols-12 gap-10 text-lg leading-relaxed text-ink-soft">
@@ -30,9 +30,9 @@ export function Intro() {
               mindennapok része.
             </p>
           </FadeUp>
-          <FadeUp delay={0.35} className="md:col-span-5 md:pl-8 md:border-l border-terracotta/30">
-            <p className="font-serif text-2xl italic leading-snug text-ink">
-              Az <span className="not-italic font-semibold text-terracotta-deep">EMBER</span> áll
+          <FadeUp delay={0.35} className="md:col-span-5 md:pl-8 md:border-l border-coral/30">
+            <p className="font-display text-2xl leading-snug text-ink">
+              Az <span className="font-semibold text-coral-deep">EMBER</span> áll
               a tevékenységeink középpontjában — biológiai sajátosságaival, ebben a
               közhelyszerűen felgyorsult világban.
             </p>

@@ -30,17 +30,17 @@ export function Andrea() {
     <section id="andrea" className="py-24 md:py-36 px-6 bg-cream">
       <div className="mx-auto max-w-7xl">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-terracotta-deep mb-5">
+          <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">
             A módszertanok mögött
           </p>
         </FadeUp>
 
         {/* Name + title on top */}
         <FadeUp delay={0.05} className="mb-12 md:mb-16">
-          <h2 className="font-serif text-4xl md:text-5xl leading-tight">
+          <h2 className="font-display text-4xl md:text-5xl leading-tight">
             Kemenes Andrea Sophie
           </h2>
-          <p className="text-terracotta-deep italic font-serif mt-2 text-lg">
+          <p className="text-coral-deep font-display mt-2 text-lg">
             Human Engagement Architect
           </p>
         </FadeUp>
@@ -62,14 +62,14 @@ export function Andrea() {
           {/* Quote */}
           <FadeUp delay={0.2} className="lg:col-span-7">
             <blockquote className="relative">
-              <span className="font-serif text-7xl md:text-9xl text-terracotta/30 leading-none absolute -top-6 -left-2">
+              <span className="font-display text-7xl md:text-9xl text-coral/30 leading-none absolute -top-6 -left-2">
                 “
               </span>
-              <p className="font-serif text-2xl md:text-3xl leading-snug text-ink relative z-10 pl-8 md:pl-12">
+              <p className="font-display text-2xl md:text-3xl leading-snug text-ink relative z-10 pl-8 md:pl-12">
                 A kritikus gondolkodás oktatása számomra nem elméleti kérdés, hanem a modern
                 vállalati biztonság és hatékonyság alapköve. Pályafutásom során egyetlen cél
                 vezérelt:{" "}
-                <span className="italic text-terracotta-deep">
+                <span className="accent-mark">
                   megérteni, hogyan hozunk döntéseket nyomás alatt,
                 </span>{" "}
                 és hogyan védhetjük meg az emberi elmét a manipulációtól — legyen az egy
@@ -85,13 +85,13 @@ export function Andrea() {
             <FadeUp key={p.n} delay={i * 0.1}>
               <article className="h-full">
                 <div className="flex items-baseline gap-4 mb-5">
-                  <span className="font-serif text-4xl text-terracotta-deep/40">{p.n}</span>
-                  <span className="h-px flex-1 bg-terracotta/30" />
+                  <span className="font-display text-4xl text-coral-deep/40">{p.n}</span>
+                  <span className="h-px flex-1 bg-coral/30" />
                 </div>
-                <h3 className="font-serif text-2xl leading-tight mb-1">
-                  <span className="text-terracotta-deep">{p.years}</span> {p.title}
+                <h3 className="font-display text-2xl leading-tight mb-1">
+                  <span className="text-coral-deep">{p.years}</span> {p.title}
                 </h3>
-                <p className="font-serif italic text-ink-soft mb-4">{p.role}</p>
+                <p className="font-display text-ink-soft mb-4">{p.role}</p>
                 <p className="text-ink-soft text-[15px] leading-relaxed">{p.body}</p>
               </article>
             </FadeUp>
