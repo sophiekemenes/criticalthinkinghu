@@ -35,8 +35,7 @@ const templatePath = path.join(distDir, "index.spa.html");
 // <HeadContent /> inside the SSR output) — no override needed here.
 const ROUTES = [
   { path: "/", outFile: "index.html" },
-  // Added in Fázis D once the route exists:
-  // { path: "/cikkek/self-check-ai", outFile: "cikkek/self-check-ai/index.html" },
+  { path: "/cikkek/self-check-ai", outFile: "cikkek/self-check-ai/index.html" },
 ];
 
 async function main() {

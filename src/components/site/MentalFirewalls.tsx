@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { Eye, Brain, Compass } from "lucide-react";
 import { FadeUp } from "./FadeUp";
 
@@ -278,12 +279,18 @@ export function MentalFirewalls() {
 
         <FadeUp>
           <div className="text-center">
-            <a
-              href="#kapcsolat"
+            <Link
+              to="/cikkek/self-check-ai"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-sunset text-cream font-medium hover:opacity-90 transition-opacity shadow-elegant"
             >
-              Részletek
+              Self-check: 3 jel, hogy az AI gondolkodik helyetted
               <span aria-hidden>→</span>
+            </Link>
+            <a
+              href="#kapcsolat"
+              className="block mt-5 text-sm text-cream/60 hover:text-coral transition-colors"
+            >
+              vagy vegyük fel a kapcsolatot
             </a>
           </div>
         </FadeUp>
