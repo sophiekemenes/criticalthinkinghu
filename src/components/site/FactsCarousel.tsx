@@ -6,7 +6,7 @@ import { FadeUp } from "./FadeUp";
 const facts = [
   {
     cat: "Idegrendszer",
-    fact: "Az agyad naponta körülbelül 35 000 tudatos döntést hoz — minden egyes választás kognitív energiát éget.",
+    fact: "Naponta rengeteg apró döntést hozol — a pontos szám vitatott, de a minta egyértelmű: minél fáradtabb vagy, annál könnyebben enged a tudatosság.",
   },
   {
     cat: "Figyelem",

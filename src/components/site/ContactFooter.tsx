@@ -24,8 +24,8 @@ export function ContactFooter() {
             </FadeUp>
             <FadeUp delay={0.2}>
               <p className="text-cream/70 leading-relaxed mb-10">
-                Vállalati képzés, AI adoption vagy NIS2 stratégia? Írj néhány sort a
-                kihívásról — 2 munkanapon belül válaszolok.
+                Előadás, workshop vagy a 3 Mentális Tűzfal alkalmazása a te csapatodban?
+                Írj néhány sort a kihívásról — 2 munkanapon belül válaszolok.
               </p>
             </FadeUp>
             <FadeUp delay={0.3}>

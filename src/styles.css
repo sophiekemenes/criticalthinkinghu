@@ -43,15 +43,6 @@
   --color-coral: var(--coral);
   --color-coral-soft: var(--coral-soft);
   --color-coral-deep: var(--coral-deep);
-
-  /* Legacy tokens — kept as coral aliases only while AudienceSelector/
-     HumanVsAI/Jogsi still reference them; removed together with those
-     components in Fázis C. Do not use these in new code, use coral*. */
-  --color-terracotta: var(--coral);
-  --color-terracotta-soft: var(--coral-soft);
-  --color-terracotta-deep: var(--coral-deep);
-  --color-gold: var(--coral);
-  --color-gold-soft: var(--coral-soft);
 }
 
 :root {

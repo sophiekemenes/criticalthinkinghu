@@ -19,7 +19,7 @@ export function Hero() {
           className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-coral-deep mb-8"
         >
           <span className="h-px w-8 bg-coral" />
-          Kutatás-vezérelt brand
+          3 Mentális Tűzfal
           <span className="h-px w-8 bg-coral" />
         </motion.p>
 
@@ -29,9 +29,9 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
           className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-medium leading-[1.02] text-balance"
         >
-          Kritikus Gondolkodás
-          <span className="block font-light text-coral-deep">
-            &amp; Digitális Tudatosság
+          Tiszta gondolkodás.
+          <span className="block">
+            Saját <span className="accent-mark">döntés.</span>
           </span>
         </motion.h1>
 
@@ -41,7 +41,8 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="mt-8 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed text-balance"
         >
-          Az emberi intelligencia védelme az AI korszakában.
+          Megvédjük az emberi gondolkodást egy olyan világban, amely folyamatosan
+          dönteni akar helyettünk.
         </motion.p>
 
         <motion.div
@@ -51,7 +52,7 @@ export function Hero() {
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#celcsoport"
+            href="#firewalls"
             className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-ink text-cream font-medium hover:bg-coral-deep transition-all shadow-elegant"
           >
             Felfedezem

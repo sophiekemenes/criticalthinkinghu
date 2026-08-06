@@ -2,11 +2,9 @@ import { Link } from "@tanstack/react-router";
 import logoFullColor from "@/assets/brand/criticalthinking-logo-full-color.svg";
 
 const links = [
-  { href: "#celcsoport", label: "Célcsoport" },
-  { href: "#vallalati", label: "Vállalati" },
   { href: "#firewalls", label: "3 Tűzfal" },
-  { href: "#jogsi", label: "JOGSI" },
   { href: "#andrea", label: "Rólam" },
+  { href: "#hamarosan", label: "Amin dolgozom" },
   { href: "#kapcsolat", label: "Kapcsolat" },
 ];
 

@@ -132,6 +132,13 @@ const firewalls = [
     title: "Percepciós tűzfal",
     sub: "Figyelem védelme",
     desc: "A Salience Network — az agy figyelmi kapcsolója — tudatos újrahangolása, hogy mi dönthessük el, mi érdemli meg a fókuszunkat.",
+    situation: "A válasz túl gyorsan jön, mielőtt eldöntenéd, mit is vártál.",
+    signs: [
+      "skimmelés az első mondat után",
+      "egyre rövidebb promptok, egyre kevesebb saját gondolkodás",
+      "„elveszett idő” AI-jal anélkül, hogy emlékeznél az eredeti kérdésre",
+    ],
+    tip: "A prompt elküldése előtt írd le egy mondatban, mit vársz válaszként — ha a válasz után nem tudod összevetni, nem olvastad el, csak fogyasztottad.",
     visual: <SalienceVisual />,
   },
   {
@@ -140,6 +147,13 @@ const firewalls = [
     title: "Értelmezési tűzfal",
     sub: "Logikai védelem",
     desc: "A megismerés rejtett torzításainak (kognitív biasok) felismerése és semlegesítése a döntéshozatal előtt.",
+    situation: "A magabiztos hangnem miatt fogadsz el egy állítást, nem az ellenőrzés miatt.",
+    signs: [
+      "gyorsabban elfogadod, ha megerősíti, amit már gondoltál",
+      "nem kérdezed meg „honnan tudod?”",
+      "átfogalmazott kérdésre kapott eltérő válasz zavarba hoz, de nem gyanakvóvá tesz",
+    ],
+    tip: "Kontroll-kérdés minden fontos válasznál — „ha ezt egy gyakornoktól kapnám ugyanilyen magabiztosan, ellenőrizném?” Ha igen, most is ellenőrizd.",
     visual: <BiasesVisual />,
   },
   {
@@ -148,6 +162,13 @@ const firewalls = [
     title: "Döntési tűzfal",
     sub: "Tudatos választás",
     desc: "A 10/10/10 módszer — három időhorizont, hogy az impulzus helyett az érték irányítson.",
+    situation: "Az AI három opciót ad, és automatikusan a legkönnyebben elfogadhatót választod.",
+    signs: [
+      "nem tudod megindokolni a választást az AI válaszán kívül",
+      "kevésbé mersz eltérni az AI-tól, mint egy embertől",
+      "már nem „mit gondolok”, hanem „mit mondott az AI” a kérdés",
+    ],
+    tip: "A 10/10/10 alkalmazása magára a javaslatra — mit gondolok róla 10 perc / 10 óra / 10 nap múlva. Ha egyik időtávon sincs saját hozzáadott nézőpont, az jóváhagyás volt, nem döntés.",
     visual: <TenTenTen />,
   },
 ];
@@ -214,8 +235,40 @@ export function MentalFirewalls() {
                   <h3 className="font-display text-2xl mb-1">{f.title}</h3>
                   <p className="text-coral-soft text-sm mb-4">{f.sub}</p>
                   <p className="text-cream/70 text-[15px] leading-relaxed mb-6">{f.desc}</p>
-                  <div className="rounded-xl bg-ink/40 border border-cream/5 overflow-hidden">
+
+                  <div className="rounded-xl bg-ink/40 border border-cream/5 overflow-hidden mb-6">
                     {f.visual}
+                  </div>
+
+                  {/* Self-check — lásd az induló cikket: /cikkek/self-check-ai */}
+                  <div className="rounded-xl border border-coral/20 bg-cream/[0.03] p-5 space-y-4">
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-coral mb-1.5">
+                        Helyzet
+                      </p>
+                      <p className="text-cream/80 text-sm leading-relaxed">{f.situation}</p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-coral mb-1.5">
+                        Óvó jelek
+                      </p>
+                      <ul className="space-y-1">
+                        {f.signs.map((s) => (
+                          <li key={s} className="text-cream/70 text-sm leading-relaxed flex gap-2">
+                            <span className="text-coral/60" aria-hidden>
+                              ·
+                            </span>
+                            {s}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-coral mb-1.5">
+                        Gyakorlati tipp
+                      </p>
+                      <p className="text-cream/80 text-sm leading-relaxed">{f.tip}</p>
+                    </div>
                   </div>
                 </div>
               </FadeUp>

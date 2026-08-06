@@ -3,11 +3,9 @@ import { Toaster } from "sonner";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { Hero } from "@/components/site/Hero";
 import { Intro } from "@/components/site/Intro";
-import { AudienceSelector } from "@/components/site/AudienceSelector";
-import { HumanVsAI } from "@/components/site/HumanVsAI";
 import { MentalFirewalls } from "@/components/site/MentalFirewalls";
-import { Jogsi } from "@/components/site/Jogsi";
 import { Andrea } from "@/components/site/Andrea";
+import { ComingSoon } from "@/components/site/ComingSoon";
 import { FactsCarousel } from "@/components/site/FactsCarousel";
 import { ContactFooter } from "@/components/site/ContactFooter";
 
@@ -22,11 +20,9 @@ function Index() {
       <SiteHeader />
       <Hero />
       <Intro />
-      <AudienceSelector />
-      <HumanVsAI />
       <MentalFirewalls />
-      <Jogsi />
       <Andrea />
+      <ComingSoon />
       <FactsCarousel />
       <ContactFooter />
     </main>

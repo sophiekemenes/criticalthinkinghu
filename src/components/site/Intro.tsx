@@ -18,16 +18,15 @@ export function Intro() {
         <div className="grid md:grid-cols-12 gap-10 text-lg leading-relaxed text-ink-soft">
           <FadeUp delay={0.2} className="md:col-span-7 space-y-6">
             <p>
-              A <span className="text-ink font-medium">Criticalthinking.hu</span> egy
-              kutatás-vezérelt brand, amely alapvetően az emberek folyamatos kihívásokkal
-              szembesülő idegrendszerét figyelembe véve kínál szolgáltatásokat különböző
-              célcsoportok számára.
+              A döntéseinket ma egyre inkább külső rendszerek akarják átvenni —
+              algoritmusok, generatív AI, folyamatos információs túlterhelés. Ez nem
+              elméleti kérdés, hanem mindennapi, kézzelfogható kihívás vezetőknek,
+              szakembereknek és a következő generációnak egyaránt.
             </p>
             <p>
-              Küldetésünk, hogy a vezetők, döntéshozók és a következő generáció megőrizzék
-              mentális szuverenitásukat egy olyan korban, ahol az algoritmusok versengenek a
-              figyelmükért, az oktatás alapjaiban alakul át, és az információtúlterhelés a
-              mindennapok része.
+              Ez ellen véd a{" "}
+              <span className="text-ink font-medium">3 Mentális Tűzfal</span> keretrendszer
+              — alább részletesen.
             </p>
           </FadeUp>
           <FadeUp delay={0.35} className="md:col-span-5 md:pl-8 md:border-l border-coral/30">
