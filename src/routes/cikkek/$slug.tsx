@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -5,6 +6,14 @@ import rehypeRaw from "rehype-raw";
 import { getArticleBySlug } from "@/content/articles";
 import { SelfCheckArticle } from "@/components/site/articles/SelfCheckArticle";
 import { ArticleLayout } from "@/components/site/articles/ArticleLayout";
+
+// Slug -> egyedi komponens leképezés a "custom": true manifest-bejegyzésekhez
+// (nem prózai, saját layoutú cikkek). Új ilyen cikknél: komponens a
+// src/components/site/articles/ alá, manifestben "custom": true, és egy
+// új sor ide.
+const customArticleComponents: Record<string, ComponentType> = {
+  "self-check-ai": SelfCheckArticle,
+};
 
 // Nyers markdown-törzsek build-time betöltése — az "as: 'raw'" glob-opció
 // helyett a Vite 5+ ajánlott "?raw" query-formáját használjuk.
@@ -46,7 +55,8 @@ function ArticlePage() {
   const article = Route.useLoaderData();
 
   if (article.custom) {
-    return <SelfCheckArticle />;
+    const CustomArticle = customArticleComponents[article.slug];
+    return CustomArticle ? <CustomArticle /> : null;
   }
 
   const body = articleBodies[`/src/content/articles/${article.slug}.md`];

@@ -7,5 +7,14 @@
     "date": "2026-08-06",
     "categories": [],
     "custom": true
+  },
+  {
+    "slug": "ne-kattints-allj-meg-gondolkodj",
+    "title": "Ne kattints. Állj meg. Gondolkodj.",
+    "subtitle": "A Security Awareness „klisétsunami” vs. mindennapi kognitív sikereink",
+    "description": "A security awareness világ elcsépelt klisémondata és a mindennapi kognitív sikereink — hogyan alakul át a 3 tűzfal a scam elleni védelemből a saját ítélőképesség megőrzésének keretévé, amikor generatív AI-jal dolgozunk.",
+    "excerpt": "A security awareness \"klisétsunami\" — Ne kattints. Állj meg. Gondolkodj. — és arról, hogy ugyanez a három lépés zajlik le bennünk akkor is, amikor egy generatív AI-jal beszélgetünk.",
+    "date": "2026-09-07",
+    "categories": []
   }
 ]

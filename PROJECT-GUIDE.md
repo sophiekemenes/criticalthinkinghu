@@ -6,7 +6,7 @@ Rövid, gyakorlati összefoglaló arról, hogyan épül fel és hol fut ez az ol
 
 ## 1. Mi ez az oldal
 
-A criticalthinking.hu magja egy hosszú, egyoldalas landing page (one-pager), modulokra (szekciókra) bontva — a navigáció a szekciókhoz görget. **2026. augusztus óta** emellett van egy önálló **cikk-route is** (`/cikkek/...`, lásd 3. és 8. pont) — ez a jövőbeli publikálási ritmus (heti/kétheti esszé a 3 Mentális Tűzfal egy-egy aspektusáról) alapja. Nincs bejelentkezés, nincs adatbázis.
+A criticalthinking.hu magja egy hosszú, egyoldalas landing page (one-pager), modulokra (szekciókra) bontva — a navigáció a szekciókhoz görget. **2026. augusztus óta** emellett van egy önálló **blog is** (`/cikkek`, lásd 3. és 8. pont): egy manifest-vezérelt cikk-rendszer, dátum szerint böngészhető listával és kategóriára előkészített adatmodellel — ez a publikálási ritmus (heti/kétheti esszé a 3 Mentális Tűzfal egy-egy aspektusáról) alapja. Nincs bejelentkezés, nincs adatbázis.
 
 Nyelv: a teljes felhasználói tartalom **magyar**. A szövegeket nem szabad angolra fordítani.
 
@@ -34,10 +34,13 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 
 - `src/routes/index.tsx` — a főoldal: itt van felsorolva, milyen szekciók milyen sorrendben jelennek meg (`SiteHeader → Hero → Intro → MentalFirewalls → Andrea → ComingSoon → FactsCarousel → ContactFooter`). Itt van a route `head()`-je is (title, meta description, og/twitter tagek).
 - `src/routes/__root.tsx` — a HTML burok: közös `<head>`, betűtípus-linkek, globális providerek, `<Outlet />`.
-- `src/routes/cikkek/` — önálló cikkoldalak (jelenleg: `self-check-ai.tsx` → `/cikkek/self-check-ai`). Új cikk hozzáadásához:
-  1. új fájl `src/routes/cikkek/<slug>.tsx`, saját `head()` title/description-nel (lásd `self-check-ai.tsx` mintaként — `SiteHeader`+`ContactFooter` kerettel).
-  2. `npm run dev` vagy `npm run build` egyszer lefuttatva, hogy a `routeTree.gen.ts` felvegye az új route-ot.
-  3. **`scripts/prerender-ghpages.mjs`-ben a `ROUTES` tömbhöz hozzáadni** `{ path: "/cikkek/<slug>", outFile: "cikkek/<slug>/index.html" }` — enélkül a GitHub Pages build nem generál hozzá valódi (crawlelhető) statikus HTML-t, csak a 404.html SPA fallback szolgálja ki.
+- **A blog-rendszer** (2026. szeptember óta) manifest-vezérelt, nem egy-fájl-egy-route elven megy:
+  - `src/content/articles.json` — **az egyetlen forrás** minden cikk metaadatához (`slug`, `title`, `subtitle?`, `description`, `excerpt`, `date`, `categories`, `custom?`). Ez hajtja a listát, a dinamikus cikkoldalt ÉS a GH Pages prerender route-generálását.
+  - `src/content/articles/<slug>.md` — a "sima" (prózai) cikkek nyers markdown törzse.
+  - `src/routes/cikkek/index.tsx` — a `/cikkek` lista, dátum szerint csökkenő sorrendben, előkészített év-szűréssel.
+  - `src/routes/cikkek/$slug.tsx` — egyetlen dinamikus route, ami minden cikket kiszolgál: a manifest `custom: true` jelölésű bejegyzéseinél (pl. `self-check-ai`) a hozzá tartozó saját komponenst rendereli (lásd lent), egyébként a megfelelő `.md` fájlt tölti be és `react-markdown`-nal jeleníti meg egy közös `ArticleLayout`-ban.
+  - **Új (sima, prózai) cikk hozzáadásához**: (1) új `.md` fájl a `src/content/articles/` alá, (2) egy új bejegyzés a `articles.json`-ban. **Ennyi** — nincs több route-fájl, nincs `routeTree.gen.ts` regen, nincs kézi `ROUTES`-bővítés a prerender scriptben (az automatikusan felveszi a manifestből). A főoldali cikk-CTA (`MentalFirewalls.tsx`) és a fejléc-nav is automatikusan a legfrissebb (`date` szerint) cikkre mutat.
+  - Ha egy cikknek **egyedi, nem prózai layout** kell (mint a `self-check-ai`-nak — kártyás/ikonos szerkezet): a komponens a `src/components/site/articles/` alá kerül, a manifestben `"custom": true`, és a `$slug.tsx` tetején lévő `customArticleComponents` map-hez hozzá kell adni egy `slug: Komponens` sort — ez rendereli a `.md`-alapú megjelenítés helyett.
 - `src/components/site/` — minden főoldal-modul egy külön komponens:
 
 | Fájl | Modul |
@@ -127,7 +130,7 @@ npm run format
 ## 8. Következő lépések / döntési pontok
 
 1. **Kapcsolatfelvétel.** Jelenleg nincs form; a láblécben szöveg + `mailto:` van. Ha kell működő form, külső szolgáltatás (pl. Formspree) vagy sima email-link kell — a GH Pages döntés miatt nem Lovable hosting felé megyünk (lásd 4. pont).
-2. **SEO / crawlelhetőség.** ✅ Megoldva (2026. augusztus): a GH Pages build route-onként valós, prerenderelt HTML-t ad ki (lásd 4.B pont). Új route hozzáadásakor **ne felejtsd el a `scripts/prerender-ghpages.mjs` `ROUTES` tömbjét bővíteni** (lásd 3. pont) — enélkül az adott route csak a 404.html fallback-en keresztül, üres kezdő HTML-lel érhető el.
-3. **Publikálási ritmus.** Az első cikk (`/cikkek/self-check-ai`) megvan — a következő lépés a heti/kétheti esszé-ritmus kialakítása a 3 Mentális Tűzfal egy-egy aspektusáról (ez adja a könyv nyersanyagát is). Minden új cikkhez: új route fájl + `ROUTES` bővítés (lásd 3. pont).
+2. **SEO / crawlelhetőség.** ✅ Megoldva (2026. augusztus): a GH Pages build route-onként valós, prerenderelt HTML-t ad ki (lásd 4.B pont). **2026. szeptembertől** a route-lista is automatikusan generálódik a `src/content/articles.json` manifestből (lásd 3. pont) — új cikkhez nincs több kézi lépés ezen a téren.
+3. **Publikálási ritmus.** Két élő cikk van (`/cikkek/self-check-ai`, `/cikkek/ne-kattints-allj-meg-gondolkodj`) — a `/cikkek` lista dátum szerint böngészhető, kategória szerinti szűrés az adatmodellben elő van készítve (`categories` mező), de UI-ja még nincs bekapcsolva (majd akkor éri meg, ha lesz miből válogatni). Következő lépés: a heti/kétheti esszé-ritmus tartása a 3 Mentális Tűzfal egy-egy aspektusáról. Minden új (prózai) cikkhez mostantól csak 1 `.md` fájl + 1 manifest-bejegyzés kell (lásd 3. pont) — nincs route-fájl, nincs `ROUTES`-bővítés.
 4. **Hosting egységesítése.** A Lovable hosting jelenleg lezárva (lásd 4. pont blockquote). Ha később mégis kellene valódi backend (form-küldés, adatbázis, AI funkció runtime-ban), azt újra kellene gondolni — a GH Pages build-time prerender nem helyettesít egy futó szervert.
 5. **Nincs szociális bizonyíték.** Ügyféllogó, esettanulmány, mérőszám, testimonial egyelőre hiányzik az oldalról (audit-megjegyzés, 2026.08).
