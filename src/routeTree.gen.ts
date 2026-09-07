@@ -10,43 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as CikkekSelfCheckAiRouteImport } from './routes/cikkek/self-check-ai'
+import { Route as CikkekIndexRouteImport } from './routes/cikkek/index'
+import { Route as CikkekSlugRouteImport } from './routes/cikkek/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CikkekSelfCheckAiRoute = CikkekSelfCheckAiRouteImport.update({
-  id: '/cikkek/self-check-ai',
-  path: '/cikkek/self-check-ai',
+const CikkekIndexRoute = CikkekIndexRouteImport.update({
+  id: '/cikkek/',
+  path: '/cikkek/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CikkekSlugRoute = CikkekSlugRouteImport.update({
+  id: '/cikkek/$slug',
+  path: '/cikkek/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/cikkek/self-check-ai': typeof CikkekSelfCheckAiRoute
+  '/cikkek/$slug': typeof CikkekSlugRoute
+  '/cikkek/': typeof CikkekIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/cikkek/self-check-ai': typeof CikkekSelfCheckAiRoute
+  '/cikkek/$slug': typeof CikkekSlugRoute
+  '/cikkek': typeof CikkekIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/cikkek/self-check-ai': typeof CikkekSelfCheckAiRoute
+  '/cikkek/$slug': typeof CikkekSlugRoute
+  '/cikkek/': typeof CikkekIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cikkek/self-check-ai'
+  fullPaths: '/' | '/cikkek/$slug' | '/cikkek/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cikkek/self-check-ai'
-  id: '__root__' | '/' | '/cikkek/self-check-ai'
+  to: '/' | '/cikkek/$slug' | '/cikkek'
+  id: '__root__' | '/' | '/cikkek/$slug' | '/cikkek/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CikkekSelfCheckAiRoute: typeof CikkekSelfCheckAiRoute
+  CikkekSlugRoute: typeof CikkekSlugRoute
+  CikkekIndexRoute: typeof CikkekIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -58,11 +68,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/cikkek/self-check-ai': {
-      id: '/cikkek/self-check-ai'
-      path: '/cikkek/self-check-ai'
-      fullPath: '/cikkek/self-check-ai'
-      preLoaderRoute: typeof CikkekSelfCheckAiRouteImport
+    '/cikkek/': {
+      id: '/cikkek/'
+      path: '/cikkek'
+      fullPath: '/cikkek/'
+      preLoaderRoute: typeof CikkekIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cikkek/$slug': {
+      id: '/cikkek/$slug'
+      path: '/cikkek/$slug'
+      fullPath: '/cikkek/$slug'
+      preLoaderRoute: typeof CikkekSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -70,7 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CikkekSelfCheckAiRoute: CikkekSelfCheckAiRoute,
+  CikkekSlugRoute: CikkekSlugRoute,
+  CikkekIndexRoute: CikkekIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

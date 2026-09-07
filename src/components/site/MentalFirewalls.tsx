@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { Eye, Brain, Compass } from "lucide-react";
 import { FadeUp } from "./FadeUp";
+import { getLatestArticle } from "@/content/articles";
 
 const threats = [
   "figyelemrablással",
@@ -175,6 +176,8 @@ const firewalls = [
 ];
 
 export function MentalFirewalls() {
+  const latestArticle = getLatestArticle();
+
   return (
     <section id="firewalls" className="py-24 md:py-36 px-6 bg-ink text-cream relative overflow-hidden">
       <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-coral/10 blur-3xl" />
@@ -280,10 +283,11 @@ export function MentalFirewalls() {
         <FadeUp>
           <div className="text-center">
             <Link
-              to="/cikkek/self-check-ai"
+              to="/cikkek/$slug"
+              params={{ slug: latestArticle.slug }}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-sunset text-cream font-medium hover:opacity-90 transition-opacity shadow-elegant"
             >
-              Self-check: 3 jel, hogy az AI gondolkodik helyetted
+              Legújabb cikk: {latestArticle.title}
               <span aria-hidden>→</span>
             </Link>
             <a

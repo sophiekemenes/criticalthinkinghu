@@ -1,25 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import { ArrowLeft, Eye, Brain, Compass } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { ContactFooter } from "@/components/site/ContactFooter";
 import { FadeUp } from "@/components/site/FadeUp";
 
-export const Route = createFileRoute("/cikkek/self-check-ai")({
-  head: () => ({
-    meta: [
-      {
-        title: "Self-check: 3 jel, hogy az AI gondolkodik helyetted — criticalthinking.hu",
-      },
-      {
-        name: "description",
-        content:
-          "Gyakorlati óvó jelek és tippek mindhárom Mentális Tűzfalhoz kötve, amiket az AI-jal való munka közben vehetsz észre magadon.",
-      },
-    ],
-  }),
-  component: SelfCheckArticle,
-});
-
+// Kártyás/ikonos, strukturált cikk-layout — nem prózai szöveg, ezért nem a
+// markdown-alapú ArticleLayout-ot használja (lásd src/content/articles.json
+// "custom": true bejegyzését és src/routes/cikkek/$slug.tsx-et).
 const sections = [
   {
     n: "01",
@@ -62,7 +49,7 @@ const sections = [
   },
 ];
 
-function SelfCheckArticle() {
+export function SelfCheckArticle() {
   return (
     <main className="bg-background text-foreground antialiased">
       <SiteHeader />

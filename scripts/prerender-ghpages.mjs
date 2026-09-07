@@ -30,24 +30,45 @@ const distDir = path.join(projectRoot, "dist-ghpages");
 const ssrDir = path.join(projectRoot, "dist-ghpages-ssr");
 const templatePath = path.join(distDir, "index.spa.html");
 
-// One entry per route that should get a real, crawlable static HTML file.
+// Route list is derived from src/content/articles.json instead of being
+// hand-maintained here — adding a new article to that manifest is enough
+// to get it prerendered, no edit to this file needed.
 // Title/description come from each route's own head() config (rendered via
 // <HeadContent /> inside the SSR output) — no override needed here.
-const ROUTES = [
-  { path: "/", outFile: "index.html" },
-  { path: "/cikkek/self-check-ai", outFile: "cikkek/self-check-ai/index.html" },
-];
+async function buildRoutes() {
+  const manifestPath = path.join(projectRoot, "src", "content", "articles.json");
+  const articles = JSON.parse(await readFile(manifestPath, "utf-8"));
+
+  return [
+    { path: "/", outFile: "index.html" },
+    { path: "/cikkek", outFile: "cikkek/index.html" },
+    ...articles.map((a) => ({
+      path: `/cikkek/${a.slug}`,
+      outFile: `cikkek/${a.slug}/index.html`,
+    })),
+  ];
+}
 
 async function main() {
+  const ROUTES = await buildRoutes();
   const { renderPage } = await import(
     // Dynamic import() requires a file:// URL on Windows (a bare "C:\..."
     // path throws ERR_UNSUPPORTED_ESM_URL_SCHEME under the default ESM loader).
     pathToFileURL(path.join(ssrDir, "entry-prerender.js")).href
   );
 
-  // Only the module <script> tag needs splicing in — the stylesheet link
-  // is already part of __root.tsx's head() `links` config, so <HeadContent />
-  // renders it correctly inside the SSR output on its own.
+  // The module <script> tag needs splicing in — <Scripts/> has no build
+  // manifest in this bypassed context. The local stylesheet <link>'s href
+  // also needs correcting: __root.tsx's head() `links` config renders its
+  // own <link> via <HeadContent/>, but the client build (vite.config.ghpages.ts)
+  // and this SSR build (vite.config.ghpages.ssr.ts) are two independent
+  // Tailwind compilations whose content hashes for styles.css can differ —
+  // observed in practice as a stale hash baked into the SSR output pointing
+  // at a CSS file that doesn't exist in dist-ghpages/ (404 on the live site).
+  // We only patch the href value in place (not the whole tag): the SSR
+  // <Asset> render has no `crossorigin` attribute, and swapping in Vite's
+  // own manifest tag (which does carry `crossorigin`) creates a *different*
+  // hydration mismatch — the client's own <Asset> re-render also omits it.
   const template = await readFile(templatePath, "utf-8");
   const scriptTag = template.match(/<script type="module"[^>]*><\/script>/)?.[0];
   if (!scriptTag) {
@@ -55,10 +76,20 @@ async function main() {
       "Could not find the built <script> tag in index.spa.html — did the Vite output shape change?",
     );
   }
+  const cssHref = template.match(/<link rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*\/?>/)?.[1];
+  if (!cssHref) {
+    throw new Error(
+      "Could not find the built local stylesheet <link> in index.spa.html — did the Vite output shape change?",
+    );
+  }
+  const ssrCssHrefPattern = /(<link rel="stylesheet"[^>]*href=")\/assets\/[^"]+\.css("[^>]*\/?>)/;
 
   for (const route of ROUTES) {
     const appHtml = await renderPage(route.path);
-    const withAssets = appHtml.replace("</body>", `${scriptTag}</body>`);
+    const withCorrectCss = ssrCssHrefPattern.test(appHtml)
+      ? appHtml.replace(ssrCssHrefPattern, `$1${cssHref}$2`)
+      : appHtml.replace("</head>", `<link rel="stylesheet" href="${cssHref}"></head>`);
+    const withAssets = withCorrectCss.replace("</body>", `${scriptTag}</body>`);
     const page = `<!doctype html>\n${withAssets}\n`;
 
     const outPath = path.join(distDir, route.outFile);

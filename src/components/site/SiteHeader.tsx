@@ -3,6 +3,7 @@ import logoFullColor from "@/assets/brand/criticalthinking-logo-full-color.svg";
 
 const links = [
   { href: "#firewalls", label: "3 Tűzfal" },
+  { href: "/cikkek", label: "Cikkek" },
   { href: "#andrea", label: "Rólam" },
   { href: "#hamarosan", label: "Amin dolgozom" },
   { href: "#kapcsolat", label: "Kapcsolat" },
@@ -20,15 +21,22 @@ export function SiteHeader() {
           />
         </Link>
         <nav className="hidden md:flex items-center gap-7 text-sm">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-ink-soft hover:text-coral transition-colors relative after:absolute after:left-0 after:bottom-[-4px] after:h-px after:w-0 after:bg-coral after:transition-all hover:after:w-full"
-            >
-              {l.label}
-            </a>
-          ))}
+          {links.map((l) => {
+            const className =
+              "text-ink-soft hover:text-coral transition-colors relative after:absolute after:left-0 after:bottom-[-4px] after:h-px after:w-0 after:bg-coral after:transition-all hover:after:w-full";
+            // A "/"-szal kezdődő bejegyzések valódi route-ok (pl. /cikkek) —
+            // ezeket a router Link-jével navigáljuk, a többi (#...) csak
+            // horgony-ugrás a főoldalon belül.
+            return l.href.startsWith("/") ? (
+              <Link key={l.href} to={l.href} className={className}>
+                {l.label}
+              </Link>
+            ) : (
+              <a key={l.href} href={l.href} className={className}>
+                {l.label}
+              </a>
+            );
+          })}
         </nav>
         <a
           href="#kapcsolat"
