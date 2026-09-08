@@ -50,7 +50,21 @@ export function ArticleLayout({ eyebrow, title, subtitle, dateLabel, children }:
           )}
 
           <FadeUp delay={0.2}>
-            <div className="article-prose max-w-none text-[17px] leading-[1.75] text-ink-soft space-y-6 [&_h2]:font-display [&_h2]:text-2xl [&_h2]:text-foreground [&_h2]:pt-4 [&_h2]:leading-tight [&_strong]:text-foreground [&_strong]:font-semibold [&_hr]:border-border/60 [&_hr]:my-10 [&_a]:text-coral-deep [&_a]:underline [&_a]:underline-offset-4 [&_em]:text-ink-soft/90">
+            <div
+              className="article-prose max-w-none text-[17px] leading-[1.75] text-ink-soft space-y-6
+                [&_h2]:font-display [&_h2]:text-2xl [&_h2]:text-foreground [&_h2]:pt-4 [&_h2]:leading-tight
+                [&_h3]:font-display [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-normal [&_h3]:leading-snug [&_h3]:text-coral-deep [&_h3]:border-l-4 [&_h3]:border-coral/30 [&_h3]:pl-6 [&_h3]:my-10
+                [&_h4]:font-display [&_h4]:text-xl [&_h4]:text-foreground [&_h4]:border-l-4 [&_h4]:border-coral/30 [&_h4]:pl-6 [&_h4]:my-8
+                [&_strong]:text-foreground [&_strong]:font-semibold
+                [&_hr]:border-border/60 [&_hr]:my-10
+                [&_a]:text-coral-deep [&_a]:underline [&_a]:underline-offset-4
+                [&_em]:text-ink-soft/90
+                [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2
+                [&_li]:leading-relaxed
+                [&_figure]:my-10 [&_figure]:space-y-3
+                [&_figcaption]:text-sm [&_figcaption]:text-center [&_figcaption]:text-ink-soft/70 [&_figcaption]:italic
+                [&_img]:rounded-2xl [&_img]:w-full [&_img]:border [&_img]:border-border/60"
+            >
               {children}
             </div>
           </FadeUp>

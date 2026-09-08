@@ -1,4 +1,4 @@
-import type { ComponentType } from "react";
+import { Children, cloneElement, isValidElement, type ComponentType, type ComponentPropsWithoutRef, type ReactElement } from "react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -51,6 +51,27 @@ function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString("hu-HU", { year: "numeric", month: "long", day: "numeric" });
 }
 
+// Markdown-ban egy önálló sorban álló kép mindig <p>-be csomagolva jön a
+// react-markdown-tól — de a <figure> blokk-elem, <p>-n belül érvénytelen
+// HTML lenne (a böngésző a parse-oláskor lezárná előtte a <p>-t, ami SSR/CSR
+// hidratáció-eltérést okozna). Ezért a <p>-t magát cseréljük <figure>-re,
+// amikor az egyetlen gyereke egy kép — a <figcaption> az alt szöveget adja
+// vissza, ami így látható képaláírás is lesz, nem csak accessibility-adat.
+function MarkdownParagraph({ children, ...props }: ComponentPropsWithoutRef<"p">) {
+  const items = Children.toArray(children);
+  const onlyChild = items.length === 1 ? items[0] : null;
+  if (isValidElement(onlyChild) && onlyChild.type === "img") {
+    const img = onlyChild as ReactElement<ComponentPropsWithoutRef<"img">>;
+    return (
+      <figure>
+        {cloneElement(img, { loading: "lazy" })}
+        {img.props.alt && <figcaption>{img.props.alt}</figcaption>}
+      </figure>
+    );
+  }
+  return <p {...props}>{children}</p>;
+}
+
 function ArticlePage() {
   const article = Route.useLoaderData();
 
@@ -67,7 +88,11 @@ function ArticlePage() {
       subtitle={article.subtitle}
       dateLabel={formatDate(article.date)}
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw]}
+        components={{ p: MarkdownParagraph }}
+      >
         {body ?? ""}
       </ReactMarkdown>
     </ArticleLayout>
