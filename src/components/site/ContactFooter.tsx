@@ -3,7 +3,7 @@ import { FadeUp } from "./FadeUp";
 import andreaStage from "@/assets/andrea-stage.png";
 import logoWhiteReverse from "@/assets/brand/criticalthinking-logo-white-reverse.svg";
 
-const RECIPIENT = "hello@criticalthinking.hu";
+const RECIPIENT = "info@criticalthinking.hu";
 
 export function ContactFooter() {
   return (
