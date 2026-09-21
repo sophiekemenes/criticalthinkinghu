@@ -23,6 +23,24 @@ import "./styles.css";
 // once a second real route (the /cikkek/self-check-ai article) existed.
 const router = getRouter();
 
+// Mark the router as already-server-rendered before hydrating. TanStack
+// Router's internal <Matches> component (@tanstack/react-router/Matches.tsx)
+// wraps every route's output in <Suspense> on the client UNLESS `router.ssr`
+// is truthy — that flag is normally set by the framework's own hydrate()
+// helper (@tanstack/router-core/ssr/ssr-client.ts) as part of a real
+// TanStack Start SSR boot, which this bypassed GH Pages pipeline never calls
+// (see src/entry-prerender.tsx, which also never sets it — it doesn't need
+// to, since server-side rendering short-circuits on a separate `isServer`
+// check). Leaving `router.ssr` unset therefore made every client hydration
+// render an extra <Suspense> around <main> that the prerendered HTML never
+// had, causing the intermittent "Suspense vs main" hydration mismatch
+// (React error #418) documented in PROJECT-GUIDE.md §7. Setting it here
+// (mirroring hydrate()'s own `router.ssr = { manifest }`, minus the
+// window.$_TSR dehydration dance we don't have data for) also skips a
+// redundant second router.load() that Transitioner.tsx otherwise fires on
+// mount, gated by this same flag.
+router.ssr = { manifest: undefined };
+
 // The root route's shellComponent (src/routes/__root.tsx) renders the whole
 // document (<html><head>...<body>...</body></html>) — same as
 // entry-prerender.tsx's renderToString() output. So there is no separate
