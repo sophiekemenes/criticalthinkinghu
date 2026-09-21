@@ -3,6 +3,8 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { ContactFooter } from "@/components/site/ContactFooter";
+import { EnHeader } from "@/components/site/EnHeader";
+import { EnFooter } from "@/components/site/EnFooter";
 import { FadeUp } from "@/components/site/FadeUp";
 
 interface ArticleLayoutProps {
@@ -11,31 +13,41 @@ interface ArticleLayoutProps {
   subtitle?: string;
   dateLabel: string;
   children: ReactNode;
+  /** Defaults to "hu" — the original language. "en" swaps in the minimal
+   * English header/footer and English chrome strings (see src/routes/en/). */
+  lang?: "hu" | "en";
 }
 
 // Shared chrome for "sima" (markdown-driven) cikkek — a self-check-ai kártyás
 // layoutja szándékosan nem ezt használja, saját komponensben él (lásd
 // SelfCheckArticle.tsx), mert nem prózai, hanem strukturált tartalom.
-export function ArticleLayout({ eyebrow, title, subtitle, dateLabel, children }: ArticleLayoutProps) {
+export function ArticleLayout({ eyebrow, title, subtitle, dateLabel, children, lang = "hu" }: ArticleLayoutProps) {
+  const isEn = lang === "en";
+  const Header = isEn ? EnHeader : SiteHeader;
+  const Footer = isEn ? EnFooter : ContactFooter;
+  const backHref = isEn ? "/en/articles" : "/cikkek";
+  const backLabel = isEn ? "Back to articles" : "Vissza a cikkekhez";
+  const eyebrowDefault = isEn ? "Article" : "Cikk";
+
   return (
     <main className="bg-background text-foreground antialiased">
-      <SiteHeader />
+      <Header />
 
       <article className="pt-36 pb-24 md:pb-32 px-6">
         <div className="mx-auto max-w-3xl">
           <FadeUp>
             <Link
-              to="/cikkek"
+              to={backHref}
               className="inline-flex items-center gap-2 text-sm text-ink-soft hover:text-coral transition-colors mb-10"
             >
               <ArrowLeft className="h-4 w-4" strokeWidth={1.5} />
-              Vissza a cikkekhez
+              {backLabel}
             </Link>
           </FadeUp>
 
           <FadeUp delay={0.05}>
             <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">
-              {eyebrow ?? "Cikk"} · {dateLabel}
+              {eyebrow ?? eyebrowDefault} · {dateLabel}
             </p>
           </FadeUp>
           <FadeUp delay={0.1}>
@@ -71,7 +83,7 @@ export function ArticleLayout({ eyebrow, title, subtitle, dateLabel, children }:
         </div>
       </article>
 
-      <ContactFooter />
+      <Footer />
     </main>
   );
 }

@@ -60,6 +60,14 @@ export const Route = createRootRoute({
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  // Tried making this dynamic ("hu" vs "en" based on the current route) via
+  // useRouterState, but that hook's useSyncExternalStore-based subscription
+  // doesn't hydrate safely in this project's bypassed-SSR setup (renderToString
+  // + manual hydrateRoot, not a real streaming SSR server) — it introduced a
+  // site-wide hydration mismatch (client expected a <Suspense> the server
+  // never rendered). Not worth that risk for a lang-attribute nicety; the
+  // /en/* pages set their own per-page <title>/description via head(), which
+  // matters far more for SEO than <html lang> does.
   return (
     <html lang="hu">
       <head>

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import logoFullColor from "@/assets/brand/criticalthinking-logo-full-color.svg";
+import { LanguageToggle } from "@/components/site/LanguageToggle";
 
 const links = [
   { href: "#firewalls", label: "3 Tűzfal" },
@@ -38,12 +39,15 @@ export function SiteHeader() {
             );
           })}
         </nav>
-        <a
-          href="#kapcsolat"
-          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium rounded-full bg-ink text-cream hover:bg-coral-deep transition-colors"
-        >
-          Beszéljünk
-        </a>
+        <div className="flex items-center gap-3">
+          <LanguageToggle lang="hu" />
+          <a
+            href="#kapcsolat"
+            className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium rounded-full bg-ink text-cream hover:bg-coral-deep transition-colors"
+          >
+            Beszéljünk
+          </a>
+        </div>
       </div>
     </header>
   );

@@ -10,12 +10,20 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as EnIndexRouteImport } from './routes/en/index'
 import { Route as CikkekIndexRouteImport } from './routes/cikkek/index'
 import { Route as CikkekSlugRouteImport } from './routes/cikkek/$slug'
+import { Route as EnArticlesIndexRouteImport } from './routes/en/articles/index'
+import { Route as EnArticlesSlugRouteImport } from './routes/en/articles/$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnIndexRoute = EnIndexRouteImport.update({
+  id: '/en/',
+  path: '/en/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CikkekIndexRoute = CikkekIndexRouteImport.update({
@@ -28,35 +36,76 @@ const CikkekSlugRoute = CikkekSlugRouteImport.update({
   path: '/cikkek/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EnArticlesIndexRoute = EnArticlesIndexRouteImport.update({
+  id: '/en/articles/',
+  path: '/en/articles/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnArticlesSlugRoute = EnArticlesSlugRouteImport.update({
+  id: '/en/articles/$slug',
+  path: '/en/articles/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/en/articles/$slug': typeof EnArticlesSlugRoute
+  '/en/articles/': typeof EnArticlesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek': typeof CikkekIndexRoute
+  '/en': typeof EnIndexRoute
+  '/en/articles/$slug': typeof EnArticlesSlugRoute
+  '/en/articles': typeof EnArticlesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
+  '/en/': typeof EnIndexRoute
+  '/en/articles/$slug': typeof EnArticlesSlugRoute
+  '/en/articles/': typeof EnArticlesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cikkek/$slug' | '/cikkek/'
+  fullPaths:
+    | '/'
+    | '/cikkek/$slug'
+    | '/cikkek/'
+    | '/en/'
+    | '/en/articles/$slug'
+    | '/en/articles/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cikkek/$slug' | '/cikkek'
-  id: '__root__' | '/' | '/cikkek/$slug' | '/cikkek/'
+  to:
+    | '/'
+    | '/cikkek/$slug'
+    | '/cikkek'
+    | '/en'
+    | '/en/articles/$slug'
+    | '/en/articles'
+  id:
+    | '__root__'
+    | '/'
+    | '/cikkek/$slug'
+    | '/cikkek/'
+    | '/en/'
+    | '/en/articles/$slug'
+    | '/en/articles/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CikkekSlugRoute: typeof CikkekSlugRoute
   CikkekIndexRoute: typeof CikkekIndexRoute
+  EnIndexRoute: typeof EnIndexRoute
+  EnArticlesSlugRoute: typeof EnArticlesSlugRoute
+  EnArticlesIndexRoute: typeof EnArticlesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/': {
+      id: '/en/'
+      path: '/en'
+      fullPath: '/en/'
+      preLoaderRoute: typeof EnIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cikkek/': {
@@ -82,6 +138,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CikkekSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/en/articles/': {
+      id: '/en/articles/'
+      path: '/en/articles'
+      fullPath: '/en/articles/'
+      preLoaderRoute: typeof EnArticlesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/en/articles/$slug': {
+      id: '/en/articles/$slug'
+      path: '/en/articles/$slug'
+      fullPath: '/en/articles/$slug'
+      preLoaderRoute: typeof EnArticlesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +159,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CikkekSlugRoute: CikkekSlugRoute,
   CikkekIndexRoute: CikkekIndexRoute,
+  EnIndexRoute: EnIndexRoute,
+  EnArticlesSlugRoute: EnArticlesSlugRoute,
+  EnArticlesIndexRoute: EnArticlesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

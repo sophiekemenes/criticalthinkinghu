@@ -30,14 +30,17 @@ const distDir = path.join(projectRoot, "dist-ghpages");
 const ssrDir = path.join(projectRoot, "dist-ghpages-ssr");
 const templatePath = path.join(distDir, "index.spa.html");
 
-// Route list is derived from src/content/articles.json instead of being
-// hand-maintained here — adding a new article to that manifest is enough
-// to get it prerendered, no edit to this file needed.
+// Route list is derived from src/content/articles.json (+ the English
+// counterpart, articles.en.json) instead of being hand-maintained here —
+// adding a new article to either manifest is enough to get it prerendered,
+// no edit to this file needed.
 // Title/description come from each route's own head() config (rendered via
 // <HeadContent /> inside the SSR output) — no override needed here.
 async function buildRoutes() {
   const manifestPath = path.join(projectRoot, "src", "content", "articles.json");
   const articles = JSON.parse(await readFile(manifestPath, "utf-8"));
+  const manifestPathEn = path.join(projectRoot, "src", "content", "articles.en.json");
+  const articlesEn = JSON.parse(await readFile(manifestPathEn, "utf-8"));
 
   return [
     { path: "/", outFile: "index.html" },
@@ -45,6 +48,12 @@ async function buildRoutes() {
     ...articles.map((a) => ({
       path: `/cikkek/${a.slug}`,
       outFile: `cikkek/${a.slug}/index.html`,
+    })),
+    { path: "/en", outFile: "en/index.html" },
+    { path: "/en/articles", outFile: "en/articles/index.html" },
+    ...articlesEn.map((a) => ({
+      path: `/en/articles/${a.slug}`,
+      outFile: `en/articles/${a.slug}/index.html`,
     })),
   ];
 }
