@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as EncodingTestRouteImport } from './routes/encoding-test'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnIndexRouteImport } from './routes/en/index'
 import { Route as CikkekIndexRouteImport } from './routes/cikkek/index'
@@ -16,6 +17,11 @@ import { Route as CikkekSlugRouteImport } from './routes/cikkek/$slug'
 import { Route as EnArticlesIndexRouteImport } from './routes/en/articles/index'
 import { Route as EnArticlesSlugRouteImport } from './routes/en/articles/$slug'
 
+const EncodingTestRoute = EncodingTestRouteImport.update({
+  id: '/encoding-test',
+  path: '/encoding-test',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const EnArticlesSlugRoute = EnArticlesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/encoding-test': typeof EncodingTestRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
   '/en/': typeof EnIndexRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/encoding-test': typeof EncodingTestRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek': typeof CikkekIndexRoute
   '/en': typeof EnIndexRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/encoding-test': typeof EncodingTestRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
   '/en/': typeof EnIndexRoute
@@ -76,6 +85,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/encoding-test'
     | '/cikkek/$slug'
     | '/cikkek/'
     | '/en/'
@@ -84,6 +94,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/encoding-test'
     | '/cikkek/$slug'
     | '/cikkek'
     | '/en'
@@ -92,6 +103,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/encoding-test'
     | '/cikkek/$slug'
     | '/cikkek/'
     | '/en/'
@@ -101,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EncodingTestRoute: typeof EncodingTestRoute
   CikkekSlugRoute: typeof CikkekSlugRoute
   CikkekIndexRoute: typeof CikkekIndexRoute
   EnIndexRoute: typeof EnIndexRoute
@@ -110,6 +123,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/encoding-test': {
+      id: '/encoding-test'
+      path: '/encoding-test'
+      fullPath: '/encoding-test'
+      preLoaderRoute: typeof EncodingTestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -157,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EncodingTestRoute: EncodingTestRoute,
   CikkekSlugRoute: CikkekSlugRoute,
   CikkekIndexRoute: CikkekIndexRoute,
   EnIndexRoute: EnIndexRoute,
