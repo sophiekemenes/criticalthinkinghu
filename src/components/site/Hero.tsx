@@ -41,7 +41,7 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="mt-8 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed text-balance"
         >
-          Megvédjük az emberi gondolkodást egy olyan világban, amely folyamatosan
+          Óvjuk és eddzük az emberi gondolkodást egy olyan világban, amely folyamatosan
           dönteni akar helyettünk.
         </motion.p>
 

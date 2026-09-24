@@ -276,10 +276,18 @@ function WorkshopPage() {
             <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-4">Ki tartja</p>
             <h2 className="font-display text-3xl md:text-4xl leading-tight mb-2">Kemenes Andrea Sophie</h2>
             <p className="text-coral-deep font-display mb-6">A 3 Mentális Tűzfal kidolgozója</p>
-            <p className="text-lg leading-relaxed mb-8">
+            <p className="text-lg leading-relaxed mb-4">
               Hét évig voltam Information & Cyber Security Engagement Lead egy norvég multinál, közel
-              harmincezer ember biztonsági döntéseiért feleltem. Előtte 15 évig tréner voltam. A 3 Mentális
-              Tűzfal ebből a két világból született.
+              harmincezer ember biztonsági döntéseiért feleltem. Előtte 15 évig tréner voltam.
+            </p>
+            <p className="text-lg leading-relaxed mb-4">
+              A másik műhelyem a Kincsestérkép. Ott önismerettel, a tudattalan működésével, és azokkal a
+              mentális és kognitív kiskapukkal foglalkozom, amiken keresztül mindannyian becsaphatók vagyunk,
+              csak játékosabb formában. (Ezért látod a fizetésnél is a Kincsestérkép nevét.)
+            </p>
+            <p className="text-lg leading-relaxed mb-8">
+              Multiban, tréningteremben vagy egy önismereti játékban: mindig ugyanaz érdekelt, hogy hogyan
+              működnek az emberek. A 3 Mentális Tűzfal ebből született.
             </p>
             <dl className="grid grid-cols-3 gap-4 border-t border-border/60 pt-6">
               {[
