@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PenzugyiOnvedelemRouteImport } from './routes/penzugyi-onvedelem'
 import { Route as EncodingTestRouteImport } from './routes/encoding-test'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnIndexRouteImport } from './routes/en/index'
@@ -17,6 +18,11 @@ import { Route as CikkekSlugRouteImport } from './routes/cikkek/$slug'
 import { Route as EnArticlesIndexRouteImport } from './routes/en/articles/index'
 import { Route as EnArticlesSlugRouteImport } from './routes/en/articles/$slug'
 
+const PenzugyiOnvedelemRoute = PenzugyiOnvedelemRouteImport.update({
+  id: '/penzugyi-onvedelem',
+  path: '/penzugyi-onvedelem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EncodingTestRoute = EncodingTestRouteImport.update({
   id: '/encoding-test',
   path: '/encoding-test',
@@ -56,6 +62,7 @@ const EnArticlesSlugRoute = EnArticlesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
+  '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
   '/en/': typeof EnIndexRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
+  '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek': typeof CikkekIndexRoute
   '/en': typeof EnIndexRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
+  '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
   '/en/': typeof EnIndexRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/encoding-test'
+    | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek/'
     | '/en/'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/encoding-test'
+    | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek'
     | '/en'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/encoding-test'
+    | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek/'
     | '/en/'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EncodingTestRoute: typeof EncodingTestRoute
+  PenzugyiOnvedelemRoute: typeof PenzugyiOnvedelemRoute
   CikkekSlugRoute: typeof CikkekSlugRoute
   CikkekIndexRoute: typeof CikkekIndexRoute
   EnIndexRoute: typeof EnIndexRoute
@@ -123,6 +136,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/penzugyi-onvedelem': {
+      id: '/penzugyi-onvedelem'
+      path: '/penzugyi-onvedelem'
+      fullPath: '/penzugyi-onvedelem'
+      preLoaderRoute: typeof PenzugyiOnvedelemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/encoding-test': {
       id: '/encoding-test'
       path: '/encoding-test'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EncodingTestRoute: EncodingTestRoute,
+  PenzugyiOnvedelemRoute: PenzugyiOnvedelemRoute,
   CikkekSlugRoute: CikkekSlugRoute,
   CikkekIndexRoute: CikkekIndexRoute,
   EnIndexRoute: EnIndexRoute,
