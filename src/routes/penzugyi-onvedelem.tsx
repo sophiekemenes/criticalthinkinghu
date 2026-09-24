@@ -247,8 +247,7 @@ function WorkshopPage() {
             <dl className="grid sm:grid-cols-[180px_1fr] gap-x-6 gap-y-5 leading-relaxed">
               <dt className="font-medium">Helyszín</dt>
               <dd className="text-ink-soft">
-                Roomli, Székesfehérvár. Egy kicsi, utcáról nyíló szoba, a pontos címet a visszaigazolásban
-                küldöm.
+                Roomli, 8000 Székesfehérvár, Károly János u. 1. Egy kicsi, utcáról nyíló szoba.
               </dd>
               <dt className="font-medium">Mit hozz</dt>
               <dd className="text-ink-soft">
@@ -268,6 +267,14 @@ function WorkshopPage() {
               <dt className="font-medium">Számla</dt>
               <dd className="text-ink-soft">
                 A fizetéskor megadott számlázási adatokra állítom ki, emailben küldöm.
+              </dd>
+              <dt className="font-medium">Ha közbejön valami</dt>
+              <dd className="text-ink-soft">
+                Az időpontod átfoglalható egy másik alkalomra. Írj az{" "}
+                <a className="underline hover:text-coral" href="mailto:info@criticalthinking.hu">
+                  info@criticalthinking.hu
+                </a>{" "}
+                címre, és egyeztetünk.
               </dd>
               <dt className="font-medium">Keretek</dt>
               <dd className="text-ink-soft">
