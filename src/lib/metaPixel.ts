@@ -1,8 +1,8 @@
-// Meta (Facebook) pixel, csak CookieYes-hozzájárulás után töltődik be
-// (Hirdetési / "advertisement" kategória, l. CookieConsent). A Kincsestérkép
-// hirdetési fiók pixelje: ugyanerre küldi a Make a szerveroldali Purchase
-// eseményt (CAPI) a workshop-fizetések után.
+// Meta (Facebook) pixel, csak a látogató hozzájárulása után töltődik be
+// (CookieConsent sáv). A Kincsestérkép hirdetési fiók pixelje: ugyanerre küldi
+// a Make a szerveroldali Purchase eseményt (CAPI) a workshop-fizetések után.
 export const META_PIXEL_ID = "643590472476061";
+export const CONSENT_KEY = "ct_consent";
 
 type Fbq = ((...args: unknown[]) => void) & {
   callMethod?: (...args: unknown[]) => void;
@@ -12,22 +12,27 @@ type Fbq = ((...args: unknown[]) => void) & {
   push?: unknown;
 };
 
-type CkyConsent = { categories?: Record<string, boolean> };
-
 declare global {
   interface Window {
     fbq?: Fbq;
     _fbq?: Fbq;
-    getCkyConsent?: () => CkyConsent;
   }
 }
 
-// Hozzájárult-e a látogató a hirdetési sütikhez a CookieYes-ben.
-export function hasAdConsent(): boolean {
+export function readConsent(): "granted" | "denied" | null {
   try {
-    return window.getCkyConsent?.().categories?.advertisement === true;
+    const v = window.localStorage.getItem(CONSENT_KEY);
+    return v === "granted" || v === "denied" ? v : null;
   } catch {
-    return false;
+    return null;
+  }
+}
+
+export function writeConsent(value: "granted" | "denied") {
+  try {
+    window.localStorage.setItem(CONSENT_KEY, value);
+  } catch {
+    // privát mód vagy tiltott tárhely: ilyenkor csak erre a látogatásra érvényes
   }
 }
 
@@ -57,8 +62,8 @@ export function loadMetaPixel() {
 // Esemény küldése, ha a pixel be van töltve (hozzájárulás nélkül nem csinál semmit).
 export function trackPixel(event: string, params?: Record<string, unknown>) {
   if (typeof window === "undefined") return;
-  // Az oldalak effektjei a CookieConsent-é előtt futhatnak, ezért itt is betöltjük, ha van hozzájárulás.
-  if (!window.fbq && hasAdConsent()) loadMetaPixel();
+  // Az oldalak effektjei a CookieConsent-é előtt futnak, ezért itt is betöltjük, ha van hozzájárulás.
+  if (!window.fbq && readConsent() === "granted") loadMetaPixel();
   if (!window.fbq) return;
   if (params) window.fbq("track", event, params);
   else window.fbq("track", event);
