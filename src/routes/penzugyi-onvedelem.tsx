@@ -1,6 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Check, Loader2, X } from "lucide-react";
+import { ArrowRight, CalendarPlus, Check, Loader2, X } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { ContactFooter } from "@/components/site/ContactFooter";
 import { FadeUp } from "@/components/site/FadeUp";
@@ -72,11 +72,14 @@ const takeaways = [
 function WorkshopPage() {
   const [availability, setAvailability] = useState<Availability | null>(null);
   const [status, setStatus] = useState<"siker" | "megszakitva" | null>(null);
+  const [bookedDate, setBookedDate] = useState<string | null>(null);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const f = params.get("fizetes");
     if (f === "siker" || f === "megszakitva") setStatus(f);
+    const d = params.get("idopont");
+    if (d && d in CALENDAR_EVENTS) setBookedDate(d);
 
     fetch(`${API_URL}?action=availability`)
       .then((r) => (r.ok ? r.json() : null))
@@ -90,7 +93,7 @@ function WorkshopPage() {
     <main className="bg-background text-foreground antialiased">
       <SiteHeader />
 
-      {status && <StatusBanner status={status} onClose={() => setStatus(null)} />}
+      {status && <StatusBanner status={status} dateId={bookedDate} onClose={() => setStatus(null)} />}
 
       {/* Hero */}
       <section className="pt-36 pb-20 md:pb-28 px-6">
@@ -291,8 +294,72 @@ function WorkshopPage() {
   );
 }
 
-function StatusBanner({ status, onClose }: { status: "siker" | "megszakitva"; onClose: () => void }) {
+// Naptárba tétel a köszönőoldalon (a success_url `idopont` paraméteréből).
+// Időpontok UTC-ben: október elején Budapest = UTC+2.
+const CALENDAR_LOCATION = "Roomli, 8000 Székesfehérvár, Károly János u. 1.";
+const CALENDAR_DETAILS =
+  "Online Pénzügyi Önvédelem workshop (criticalthinking.hu). Hozz feltöltött telefont, és hogy be tudj lépni a banki appodba (a belépési adatokat fejben, ne papíron). Ha közbejön valami: info@criticalthinking.hu";
+const CALENDAR_EVENTS: Record<string, { title: string; start: string; end: string }[]> = {
+  okt03: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261003T090000Z", end: "20261003T130000Z" }],
+  okt04: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261004T090000Z", end: "20261004T130000Z" }],
+  okt0708: [
+    { title: "Online Pénzügyi Önvédelem workshop (1/2)", start: "20261007T160000Z", end: "20261007T180000Z" },
+    { title: "Online Pénzügyi Önvédelem workshop (2/2)", start: "20261008T160000Z", end: "20261008T180000Z" },
+  ],
+};
+
+function googleCalendarUrl(e: { title: string; start: string; end: string }) {
+  const p = new URLSearchParams({
+    action: "TEMPLATE",
+    text: e.title,
+    dates: `${e.start}/${e.end}`,
+    details: CALENDAR_DETAILS,
+    location: CALENDAR_LOCATION,
+  });
+  return `https://calendar.google.com/calendar/render?${p.toString()}`;
+}
+
+function icsEscape(s: string) {
+  return s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,");
+}
+
+function downloadIcs(dateId: string) {
+  const events = CALENDAR_EVENTS[dateId] ?? [];
+  const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//criticalthinking.hu//workshop//HU", "CALSCALE:GREGORIAN"];
+  for (const e of events) {
+    lines.push(
+      "BEGIN:VEVENT",
+      `UID:${dateId}-${e.start}@criticalthinking.hu`,
+      `DTSTAMP:${e.start}`,
+      `DTSTART:${e.start}`,
+      `DTEND:${e.end}`,
+      `SUMMARY:${icsEscape(e.title)}`,
+      `LOCATION:${icsEscape(CALENDAR_LOCATION)}`,
+      `DESCRIPTION:${icsEscape(CALENDAR_DETAILS)}`,
+      "END:VEVENT",
+    );
+  }
+  lines.push("END:VCALENDAR");
+  const blob = new Blob([lines.join("\r\n")], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "penzugyi-onvedelem-workshop.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function StatusBanner({
+  status,
+  dateId,
+  onClose,
+}: {
+  status: "siker" | "megszakitva";
+  dateId: string | null;
+  onClose: () => void;
+}) {
   const ok = status === "siker";
+  const events = dateId ? CALENDAR_EVENTS[dateId] : undefined;
   return (
     <div className="fixed top-16 inset-x-0 z-40 px-6 pt-4">
       <div
@@ -310,11 +377,36 @@ function StatusBanner({ status, onClose }: { status: "siker" | "megszakitva"; on
           <X className="h-4 w-4" />
         </button>
         {ok ? (
-          <p className="leading-relaxed">
-            <strong className="font-display">Megvan a helyed, köszönöm!</strong> Hamarosan emailben küldöm a
-            visszaigazolást az időponttal és a naptármeghívót. Ha egy napon belül nem látod, nézd meg a
-            Promóciók vagy a Spam mappát is.
-          </p>
+          <div className="space-y-3">
+            <p className="leading-relaxed">
+              <strong className="font-display">Megvan a helyed, köszönöm!</strong> A nyugtát az időponttal
+              emailben is megkapod. Ha nem látod, nézd meg a Promóciók vagy a Spam mappát is.
+            </p>
+            {events && (
+              <div className="flex flex-wrap gap-2">
+                {events.map((e, i) => (
+                  <a
+                    key={e.start}
+                    href={googleCalendarUrl(e)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-coral px-4 py-2 text-sm font-medium text-cream hover:bg-coral-deep transition-colors"
+                  >
+                    <CalendarPlus className="h-4 w-4" />
+                    {events.length > 1 ? `Google Naptárba (${i + 1}. alkalom)` : "Google Naptárba"}
+                  </a>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => dateId && downloadIcs(dateId)}
+                  className="inline-flex items-center gap-2 rounded-full border border-cream/40 px-4 py-2 text-sm font-medium text-cream hover:border-cream transition-colors"
+                >
+                  <CalendarPlus className="h-4 w-4" />
+                  Apple / Outlook naptár (.ics)
+                </button>
+              </div>
+            )}
+          </div>
         ) : (
           <p className="leading-relaxed">
             A fizetés megszakadt, nem terheltünk semmit. Ha közben elbizonytalanodtál valamiben, írj az{" "}
