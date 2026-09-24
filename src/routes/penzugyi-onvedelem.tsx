@@ -4,6 +4,9 @@ import { ArrowRight, CalendarPlus, Check, Loader2, X } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { ContactFooter } from "@/components/site/ContactFooter";
 import { FadeUp } from "@/components/site/FadeUp";
+import trainImg from "@/assets/workshop/vonat.webp";
+import grandpaImg from "@/assets/workshop/nagypapa.webp";
+import sophieImg from "@/assets/workshop/sophie-portre.webp";
 
 // Jelentkezés + fizetés a Make "CT workshop - jelentkezés API + fizetés
 // feldolgozás" scenarión keresztül (id 7576567). Ugyanez az URL kapja a
@@ -133,27 +136,39 @@ function WorkshopPage() {
 
       {/* Miért */}
       <section className="py-20 md:py-28 px-6 bg-ink text-cream">
-        <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed">
-          <FadeUp>
-            <p className="font-display text-3xl md:text-4xl leading-tight text-cream mb-4">
-              A csalás nem intelligenciateszt.
-            </p>
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <FadeUp className="lg:col-span-6">
+            <img
+              src={trainImg}
+              alt="Egy férfi a vonaton aggódva nézi a telefonját, előtte nyitott laptop"
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="w-full aspect-[3/2] object-cover rounded-2xl"
+            />
           </FadeUp>
-          <FadeUp delay={0.05}>
-            <p className="text-cream/80">
-              Két mondat, amit a biztonsági szakma évtizedek óta ismétel: ne kattints, állj meg. Annyira
-              elcsépelt, hogy a legtöbben csak biccentünk rá, aztán kedd délelőtt felhív a „bank biztonsági
-              osztálya”, pontosan tudja a nevünket, azt is, melyik bankban vagyunk, és a hangja olyan
-              nyugodt és segítőkész, hogy mire leesik, mi történik, már az SMS-kódot olvassuk fel.
-            </p>
-          </FadeUp>
-          <FadeUp delay={0.1}>
-            <p className="text-cream/80">
-              A csaló nem azt keresi, aki buta. Azt keresi, aki épp fáradt. Siet. Aggódik a gyerekéért.
-              Segíteni akar. Ezért nem az a kérdés, hogy elég okos vagy-e. Az a kérdés, van-e olyan
-              rendszered, ami akkor is megfog, amikor épp nem vagy résen.
-            </p>
-          </FadeUp>
+          <div className="lg:col-span-6 space-y-6 text-lg leading-relaxed">
+            <FadeUp>
+              <p className="font-display text-3xl md:text-4xl leading-tight text-cream">
+                A csalás nem <span className="text-coral">intelligenciateszt.</span>
+              </p>
+            </FadeUp>
+            <FadeUp delay={0.05}>
+              <p className="text-cream/80">
+                Két mondat, amit a biztonsági szakma évtizedek óta ismétel: ne kattints, állj meg. Annyira
+                elcsépelt, hogy a legtöbben csak biccentünk rá, aztán kedd délelőtt felhív a „bank biztonsági
+                osztálya”, pontosan tudja a nevünket, azt is, melyik bankban vagyunk, és a hangja olyan
+                nyugodt és segítőkész, hogy mire leesik, mi történik, már az SMS-kódot olvassuk fel.
+              </p>
+            </FadeUp>
+            <FadeUp delay={0.1}>
+              <p className="text-cream/80">
+                A csaló nem azt keresi, aki buta. Azt keresi, aki épp fáradt. Siet. Aggódik a gyerekéért.
+                Segíteni akar. Ezért nem az a kérdés, hogy elég okos vagy-e. Az a kérdés, van-e olyan
+                rendszered, ami akkor is megfog, amikor épp nem vagy résen.
+              </p>
+            </FadeUp>
+          </div>
         </div>
       </section>
 
@@ -210,30 +225,74 @@ function WorkshopPage() {
         </div>
       </section>
 
-      {/* Kinek / ki */}
+      {/* Kinek szól */}
       <section className="py-20 md:py-28 px-6 bg-cream border-y border-border/50">
-        <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-12">
-          <FadeUp>
+        <div className="mx-auto max-w-6xl grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <FadeUp className="lg:col-span-6">
             <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-4">Kinek szól</p>
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-6">
+              Annak, akit a családban felhívnak, <span className="accent-mark">ha baj van.</span>
+            </h2>
             <p className="text-lg leading-relaxed">
-              Annak, aki egyszerre három irányba aggódik: a saját pénzéért, a gyerekeiért, akik már az első
+              Aki egyszerre három irányba aggódik: a saját pénzéért, a gyerekeiért, akik már az első
               bankkártyájukat nyomkodják, és a szüleiért, akiket a „bank biztonsági osztálya” hív fel. Aki a
-              családban „érti a telefont”, és akit felhívnak, ha baj van. Csak neki senki nem mutatta meg
-              rendesen.
+              családban „érti a telefont”. Csak neki senki nem mutatta meg rendesen.
             </p>
             <p className="text-ink-soft leading-relaxed mt-4">
               Nem kell hozzá informatikusnak lenned. És nem kell szégyellned, ha veled vagy a családodban már
               megtörtént. Sőt, arról is fogunk beszélni.
             </p>
           </FadeUp>
-          <FadeUp delay={0.05}>
+          <FadeUp delay={0.05} className="lg:col-span-6">
+            <img
+              src={grandpaImg}
+              alt="Egy fiatal nő hátulról átöleli telefonáló, aggódó nagyapját"
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="w-full aspect-[3/2] object-cover rounded-2xl"
+            />
+          </FadeUp>
+        </div>
+      </section>
+
+      {/* Ki tartja */}
+      <section className="py-20 md:py-28 px-6">
+        <div className="mx-auto max-w-5xl grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+          <FadeUp className="md:col-span-5">
+            <div className="relative max-w-sm mx-auto md:max-w-none">
+              <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border-2 border-coral" aria-hidden />
+              <img
+                src={sophieImg}
+                alt="Kemenes Andrea Sophie portréja"
+                width={900}
+                height={1124}
+                loading="lazy"
+                className="relative w-full aspect-[4/5] object-cover object-top rounded-2xl"
+              />
+            </div>
+          </FadeUp>
+          <FadeUp delay={0.05} className="md:col-span-7">
             <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-4">Ki tartja</p>
-            <p className="font-display text-2xl mb-3">Kemenes Andrea Sophie</p>
-            <p className="text-lg leading-relaxed">
+            <h2 className="font-display text-3xl md:text-4xl leading-tight mb-2">Kemenes Andrea Sophie</h2>
+            <p className="text-coral-deep font-display mb-6">A 3 Mentális Tűzfal kidolgozója</p>
+            <p className="text-lg leading-relaxed mb-8">
               Hét évig voltam Information & Cyber Security Engagement Lead egy norvég multinál, közel
               harmincezer ember biztonsági döntéseiért feleltem. Előtte 15 évig tréner voltam. A 3 Mentális
               Tűzfal ebből a két világból született.
             </p>
+            <dl className="grid grid-cols-3 gap-4 border-t border-border/60 pt-6">
+              {[
+                { n: "7 év", l: "kiberbiztonsági tudatosítás" },
+                { n: "~30 000", l: "ember biztonsági döntései" },
+                { n: "15 év", l: "tréneri tapasztalat" },
+              ].map((x) => (
+                <div key={x.n}>
+                  <dt className="font-display text-2xl md:text-3xl text-ink">{x.n}</dt>
+                  <dd className="text-sm text-ink-soft leading-snug mt-1">{x.l}</dd>
+                </div>
+              ))}
+            </dl>
           </FadeUp>
         </div>
       </section>
@@ -487,8 +546,8 @@ function RegistrationSection({ availability }: { availability: Availability | nu
             Válassz időpontot. <span className="accent-mark">Mindegyik ugyanaz a tartalom.</span>
           </h2>
           <p className="text-ink-soft leading-relaxed mb-10">
-            Alkalmanként legfeljebb 7 fő. A helyed a fizetéssel lesz biztos, utána azonnal jön a visszaigazolás
-            és a naptármeghívó.
+            Alkalmanként legfeljebb 7 fő. A helyed a fizetéssel lesz biztos. Utána emailben megkapod a nyugtát az
+            időponttal, és egy gombbal a naptáradba teheted.
           </p>
         </FadeUp>
 
