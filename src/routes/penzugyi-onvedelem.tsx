@@ -2,6 +2,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, CalendarPlus, Check, Loader2, X } from "lucide-react";
 import { SiteHeader } from "@/components/site/SiteHeader";
+import { trackPixel } from "@/lib/metaPixel";
 import { ContactFooter } from "@/components/site/ContactFooter";
 import { FadeUp } from "@/components/site/FadeUp";
 import trainImg from "@/assets/workshop/vonat.webp";
@@ -83,6 +84,9 @@ function WorkshopPage() {
     if (f === "siker" || f === "megszakitva") setStatus(f);
     const d = params.get("idopont");
     if (d && d in CALENDAR_EVENTS) setBookedDate(d);
+
+    // A vásárlást a Make küldi szerveroldalon (CAPI), itt csak az oldalmegtekintést jelezzük.
+    if (f !== "siker") trackPixel("ViewContent", { content_name: "Online Pénzügyi Önvédelem workshop" });
 
     fetch(`${API_URL}?action=availability`)
       .then((r) => (r.ok ? r.json() : null))
@@ -519,6 +523,14 @@ function RegistrationSection({ availability }: { availability: Availability | nu
     for (const key of ["name", "email", "phone", "partner_name", "partner_email", "bank", "phone_os", "note"]) {
       body.set(key, String(form.get(key) ?? ""));
     }
+
+    trackPixel("InitiateCheckout", {
+      content_name: "Online Pénzügyi Önvédelem workshop",
+      content_ids: [date],
+      currency: "HUF",
+      value: ticket === "paros" ? 24900 : availability?.earlyBird === false ? 14900 : 11900,
+      num_items: seatsNeeded,
+    });
 
     setSubmitting(true);
     try {

@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { CookieConsent } from "@/components/site/CookieConsent";
 
 function NotFoundComponent() {
   return (
@@ -82,5 +83,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <CookieConsent />
+    </>
+  );
 }
