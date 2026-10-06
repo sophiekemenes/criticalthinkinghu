@@ -24,5 +24,21 @@
     "excerpt": "A figyelemgazdaság nem a TikTok találmánya, hanem egy 1971-es közgazdasági jóslat — az agyad saját riasztórendszeréről, a dopaminról, és arról, miért az első Mentális Tűzfal a legfontosabb védelmi vonal.",
     "date": "2026-09-08",
     "categories": []
+  },
+  {
+    "slug": "nem-azert-hiszed-el",
+    "title": "Nem azért hiszed el, mert igaz. Azért, mert ismerős.",
+    "description": "Az aranyhal-figyelem mítoszát én magam is elhittem, évekig. Miért hiszünk el valamit attól, hogy sokszor hallottuk, és mit mutat erről a kutatás Kahnemantól az illusory truth effectig.",
+    "excerpt": "Nem attól hittem el, hogy utánanéztem, hanem attól, hogy már sokszor hallottam. Az ismétlés, a megerősítési torzítás és az Értelmezési tűzfal.",
+    "date": "2026-10-05",
+    "categories": []
+  },
+  {
+    "slug": "a-torzitas-terkep",
+    "title": "A torzítás-térkép. 12 trükk, amit a saját fejed játszik veled",
+    "description": "Tizenkét kognitív torzítás egy helyen, mindegyikhez a kutatás, ami bizonyítja, hogy nem csak egy jól hangzó elmélet. Térkép, amire visszanézhetsz, ha valami gyanúsan egyszerűnek tűnik.",
+    "excerpt": "Anchoring, sunk cost, Dunning-Kruger, halo effect és társaik: 12 torzítás, honnan tudjuk, hogy tényleg léteznek, és mire jó a térkép.",
+    "date": "2026-10-06",
+    "categories": []
   }
 ]
