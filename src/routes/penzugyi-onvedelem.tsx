@@ -41,7 +41,6 @@ type Availability = { earlyBird: boolean; dates: DateSlot[] };
 // Tartalék, ha az élő lekérdezés nem érkezik meg: az időpontok megjelennek,
 // a szabad helyek száma nem.
 const FALLBACK_DATES: DateSlot[] = [
-  { id: "okt0708", label: "október 7-8., szerda + csütörtök, 18:00-20:00", left: -1, open: true },
   { id: "okt10", label: "október 10., szombat, 11:00-15:00", left: -1, open: true },
   { id: "okt17", label: "október 17., szombat, 11:00-15:00", left: -1, open: true },
 ];
@@ -333,11 +332,6 @@ function WorkshopPage() {
                 A Roomliban két macska lakik, szabadon járnak-kelnek. Ha allergiás vagy, jelezd a
                 megjegyzésben.
               </dd>
-              <dt className="font-medium">Október 7-8.</dt>
-              <dd className="text-ink-soft">
-                Ez egy csoport, két esti alkalommal (szerda és csütörtök, 18:00-20:00). Ugyanaz a tartalom,
-                mint a szombati időpontokon, csak két részletben.
-              </dd>
               <dt className="font-medium">Számla</dt>
               <dd className="text-ink-soft">
                 A fizetéskor megadott számlázási adatokra állítom ki, emailben küldöm.
@@ -371,10 +365,6 @@ const CALENDAR_LOCATION = "Roomli, 8000 Székesfehérvár, Károly János u. 1."
 const CALENDAR_DETAILS =
   "Online Pénzügyi Önvédelem workshop (criticalthinking.hu). Hozz feltöltött telefont, és hogy be tudj lépni a banki appodba (a belépési adatokat fejben, ne papíron). Ha közbejön valami: info@criticalthinking.hu";
 const CALENDAR_EVENTS: Record<string, { title: string; start: string; end: string }[]> = {
-  okt0708: [
-    { title: "Online Pénzügyi Önvédelem workshop (1/2)", start: "20261007T160000Z", end: "20261007T180000Z" },
-    { title: "Online Pénzügyi Önvédelem workshop (2/2)", start: "20261008T160000Z", end: "20261008T180000Z" },
-  ],
   okt10: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261010T090000Z", end: "20261010T130000Z" }],
   okt17: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261017T090000Z", end: "20261017T130000Z" }],
 };
