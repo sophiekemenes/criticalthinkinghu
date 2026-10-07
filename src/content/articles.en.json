@@ -24,5 +24,25 @@
     "excerpt": "The attention economy isn't TikTok's invention — it's a 1971 economic prophecy. On your brain's own alarm system, on dopamine, and on why the first Mental Firewall is the most important line of defense.",
     "date": "2026-09-08",
     "categories": []
+  },
+  {
+    "slug": "you-believe-it-because-its-familiar",
+    "title": "You Don't Believe It Because It's True. You Believe It Because It's Familiar.",
+    "description": "I believed the goldfish attention span myth myself, for years. Why we believe things simply because we've heard them many times, and what the research says, from Kahneman to the illusory truth effect.",
+    "excerpt": "I didn't believe it because I checked it, but because I'd heard it many times. Repetition, confirmation bias and the Interpretation Firewall.",
+    "date": "2026-10-05",
+    "categories": [],
+    "image": "/images/articles/nem-azert-hiszed-el/og.jpg",
+    "imageAlt": "A well-worn dirt path next to a paved footpath in a housing estate"
+  },
+  {
+    "slug": "the-bias-map",
+    "title": "The Bias Map: 12 Tricks Your Own Brain Plays on You",
+    "description": "Twelve cognitive biases in one place, each with the research showing it's more than a nice-sounding theory. A map to look back at when something seems suspiciously simple.",
+    "excerpt": "Anchoring, sunk cost, Dunning-Kruger, the halo effect and friends: 12 biases, how we know they're real, and what the map is for.",
+    "date": "2026-10-06",
+    "categories": [],
+    "image": "/images/articles/a-torzitas-terkep/og.jpg",
+    "imageAlt": "A vintage cockpit instrument panel with twelve gauges, each labeled with a cognitive bias"
   }
 ]
