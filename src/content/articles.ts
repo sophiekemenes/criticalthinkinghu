@@ -17,6 +17,11 @@ export interface Article {
   /** Ha true, a cikknek saját, egyedi komponense van (lásd src/components/site/articles/),
    * nem a markdown-alapú ArticleLayout rendereli. */
   custom?: boolean;
+  /** Közösségi megosztási kép (og:image / twitter:image), site-relatív útvonal,
+   * ideálisan 1200x630. Ha nincs megadva, a megosztott linkhez nem kerül kép. */
+  image?: string;
+  /** A megosztási kép alt szövege (og:image:alt). */
+  imageAlt?: string;
 }
 
 const articles = raw as Article[];

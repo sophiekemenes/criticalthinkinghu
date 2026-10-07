@@ -7,6 +7,8 @@ import { getArticleBySlug } from "@/content/articles";
 import { SelfCheckArticle } from "@/components/site/articles/SelfCheckArticle";
 import { ArticleLayout } from "@/components/site/articles/ArticleLayout";
 
+const SITE_URL = "https://www.criticalthinking.hu";
+
 // Slug -> egyedi komponens leképezés a "custom": true manifest-bejegyzésekhez
 // (nem prózai, saját layoutú cikkek). Új ilyen cikknél: komponens a
 // src/components/site/articles/ alá, manifestben "custom": true, és egy
@@ -27,10 +29,34 @@ export const Route = createFileRoute("/cikkek/$slug")({
   head: ({ params }) => {
     const article = getArticleBySlug(params.slug);
     if (!article) return { meta: [{ title: "Cikk nem található — criticalthinking.hu" }] };
+    // Közösségi megosztás: a gyökér route általános og:/twitter: címkéit itt
+    // cikk-specifikusra írjuk felül (a router a gyerek route azonos nevű
+    // meta-címkéjét veszi figyelembe). A kép abszolút URL kell legyen — a
+    // Facebook/LinkedIn nem old fel relatív útvonalat.
+    const url = `${SITE_URL}/cikkek/${article.slug}/`;
+    const image = article.image ? `${SITE_URL}${article.image}` : undefined;
     return {
       meta: [
         { title: `${article.title} — criticalthinking.hu` },
         { name: "description", content: article.description },
+        { property: "og:type", content: "article" },
+        { property: "og:url", content: url },
+        { property: "og:title", content: article.title },
+        { property: "og:description", content: article.description },
+        { name: "twitter:title", content: article.title },
+        { name: "twitter:description", content: article.description },
+        ...(image
+          ? [
+              { property: "og:image", content: image },
+              { property: "og:image:width", content: "1200" },
+              { property: "og:image:height", content: "630" },
+              ...(article.imageAlt
+                ? [{ property: "og:image:alt", content: article.imageAlt }]
+                : []),
+              { name: "twitter:card", content: "summary_large_image" },
+              { name: "twitter:image", content: image },
+            ]
+          : []),
       ],
     };
   },

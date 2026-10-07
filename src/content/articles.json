@@ -31,14 +31,18 @@
     "description": "Az aranyhal-figyelem mítoszát én magam is elhittem, évekig. Miért hiszünk el valamit attól, hogy sokszor hallottuk, és mit mutat erről a kutatás Kahnemantól az illusory truth effectig.",
     "excerpt": "Nem attól hittem el, hogy utánanéztem, hanem attól, hogy már sokszor hallottam. Az ismétlés, a megerősítési torzítás és az Értelmezési tűzfal.",
     "date": "2026-10-05",
-    "categories": []
+    "categories": [],
+    "image": "/images/articles/nem-azert-hiszed-el/og.jpg",
+    "imageAlt": "Kitaposott földösvény a burkolt járda mellett egy lakótelepen"
   },
   {
     "slug": "a-torzitas-terkep",
-    "title": "A torzítás-térkép. 12 trükk, amit a saját fejed játszik veled",
+    "title": "A torzítás-térkép. 12 trükk, amit a saját agyad játszik veled",
     "description": "Tizenkét kognitív torzítás egy helyen, mindegyikhez a kutatás, ami bizonyítja, hogy nem csak egy jól hangzó elmélet. Térkép, amire visszanézhetsz, ha valami gyanúsan egyszerűnek tűnik.",
     "excerpt": "Anchoring, sunk cost, Dunning-Kruger, halo effect és társaik: 12 torzítás, honnan tudjuk, hogy tényleg léteznek, és mire jó a térkép.",
     "date": "2026-10-06",
-    "categories": []
+    "categories": [],
+    "image": "/images/articles/a-torzitas-terkep/og.jpg",
+    "imageAlt": "Régi pilótafülke műszerfala tizenkét műszerrel, mindegyik egy kognitív torzítás nevét viseli"
   }
 ]
