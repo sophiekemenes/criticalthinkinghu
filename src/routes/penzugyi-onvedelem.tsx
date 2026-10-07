@@ -41,7 +41,6 @@ type Availability = { earlyBird: boolean; dates: DateSlot[] };
 // Tartalék, ha az élő lekérdezés nem érkezik meg: az időpontok megjelennek,
 // a szabad helyek száma nem.
 const FALLBACK_DATES: DateSlot[] = [
-  { id: "okt10", label: "október 10., szombat, 11:00-15:00", left: -1, open: true },
   { id: "okt17", label: "október 17., szombat, 11:00-15:00", left: -1, open: true },
 ];
 
@@ -365,7 +364,6 @@ const CALENDAR_LOCATION = "Roomli, 8000 Székesfehérvár, Károly János u. 1."
 const CALENDAR_DETAILS =
   "Online Pénzügyi Önvédelem workshop (criticalthinking.hu). Hozz feltöltött telefont, és hogy be tudj lépni a banki appodba (a belépési adatokat fejben, ne papíron). Ha közbejön valami: info@criticalthinking.hu";
 const CALENDAR_EVENTS: Record<string, { title: string; start: string; end: string }[]> = {
-  okt10: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261010T090000Z", end: "20261010T130000Z" }],
   okt17: [{ title: "Online Pénzügyi Önvédelem workshop", start: "20261017T090000Z", end: "20261017T130000Z" }],
 };
 
@@ -533,7 +531,7 @@ function RegistrationSection({ availability }: { availability: Availability | nu
       }
       if (res.status === 409) {
         setError(
-          "Erre az időpontra már nincs elég szabad hely (vagy hiányzik egy kötelező adat). Válassz másik időpontot, vagy írj az info@criticalthinking.hu címre.",
+          "Erre az időpontra már nincs elég szabad hely (vagy hiányzik egy kötelező adat). Írj az info@criticalthinking.hu címre.",
         );
       } else {
         setError("Most nem sikerült elindítani a fizetést. Próbáld újra pár perc múlva, vagy írj az info@criticalthinking.hu címre.");
@@ -553,10 +551,10 @@ function RegistrationSection({ availability }: { availability: Availability | nu
         <FadeUp>
           <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">Jelentkezés</p>
           <h2 className="font-display text-3xl md:text-4xl leading-tight mb-4">
-            Válassz időpontot. <span className="accent-mark">Mindegyik ugyanaz a tartalom.</span>
+            Október 17., szombat. <span className="accent-mark">Négy óra, hét hely.</span>
           </h2>
           <p className="text-ink-soft leading-relaxed mb-10">
-            Alkalmanként legfeljebb 7 fő. A helyed a fizetéssel lesz biztos. Utána emailben megkapod a nyugtát az
+            Legfeljebb 7 fő. A helyed a fizetéssel lesz biztos. Utána emailben megkapod a nyugtát az
             időponttal, és egy gombbal a naptáradba teheted.
           </p>
         </FadeUp>
