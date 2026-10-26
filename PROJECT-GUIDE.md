@@ -32,7 +32,7 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 
 ## 3. Hol van a tartalom (mit hol kell szerkeszteni)
 
-- `src/routes/index.tsx` — a főoldal: itt van felsorolva, milyen szekciók milyen sorrendben jelennek meg (`SiteHeader → Hero → Intro → MentalFirewalls → Andrea → ComingSoon → FactsCarousel → ContactFooter`). Itt van a route `head()`-je is (title, meta description, og/twitter tagek).
+- `src/routes/index.tsx` — a főoldal: itt van felsorolva, milyen szekciók milyen sorrendben jelennek meg (`SiteHeader → Hero → Tension → Familiar → Thoughts → OnStage → Method → About → ForOrganisations → Closing → ContactFooter` (+ `CatCameo`); a tervezési döntések a `docs/homepage-redesign-decisions.md`-ben vannak). Itt van a route `head()`-je is (title, meta description, og/twitter tagek).
 - `src/routes/__root.tsx` — a HTML burok: közös `<head>`, betűtípus-linkek, globális providerek, `<Outlet />`.
 - **A blog-rendszer** (2026. szeptember óta) manifest-vezérelt, nem egy-fájl-egy-route elven megy:
   - `src/content/articles.json` — **az egyetlen forrás** minden cikk metaadatához (`slug`, `title`, `subtitle?`, `description`, `excerpt`, `date`, `categories`, `custom?`). Ez hajtja a listát, a dinamikus cikkoldalt ÉS a GH Pages prerender route-generálását.
@@ -55,12 +55,17 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 | Fájl | Modul |
 | --- | --- |
 | `SiteHeader.tsx` | fejléc / navigáció |
-| `Hero.tsx` | nyitó szekció — brand promise ("Tiszta gondolkodás. Saját döntés.") |
-| `Intro.tsx` | bevezető / híd a 3 Tűzfalhoz |
-| `MentalFirewalls.tsx` | A 3 Mentális Tűzfal — a fő IP, self-check tartalommal |
-| `Andrea.tsx` | Rólam / Andrea szekció |
-| `ComingSoon.tsx` | "Amin dolgozom / Hamarosan" — vállalati ág + JOGSI kompakt teaser |
-| `FactsCarousel.tsx` | „Tudtad?" tény-körhinta |
+| `Hero.tsx` | nyitó szekció, „Tiszta gondolkodás. Saját döntés." |
+| `Tension.tsx` | a feszültség egy mondatban |
+| `Familiar.tsx` | „Ismerős?" kártyák, mindegyik mögött kész cikk |
+| `Thoughts.tsx` + `ClaimCheck.tsx` | Gondolatok (cikkek a manifestből) + „tény / értelmezés / hipotézis" mini-interakció |
+| `OnStage.tsx` | előadási témák + megerősített szereplések |
+| `Method.tsx` | A.I.D. és a három tűzfal (görgetésre bekapcsol) |
+| `About.tsx` | Rólam |
+| `ForOrganisations.tsx` | Human Risk Services kártya |
+| `Closing.tsx` | záró, három út |
+| `CatCameo.tsx` | egyszeri macska-geg görgetéskor (csökkentett mozgásnál nem jelenik meg) |
+| `MentalFirewalls.tsx` | jelenleg nincs a főoldalon; a tervezett külön framework-oldal alapanyaga |
 | `ContactFooter.tsx` | lábléc + kapcsolat |
 | `FadeUp.tsx` | segéd-animációs wrapper (nem tartalom) |
 

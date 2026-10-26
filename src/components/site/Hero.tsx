@@ -1,26 +1,17 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 
 export function Hero() {
   const reduce = useReducedMotion();
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden grain pt-20">
-      {/* Decorative gradient orbs */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 -left-32 w-[520px] h-[520px] rounded-full bg-coral-soft blur-3xl opacity-60" />
-        <div className="absolute bottom-1/4 -right-32 w-[480px] h-[480px] rounded-full bg-coral/15 blur-3xl opacity-70" />
-      </div>
-
-      <div className="mx-auto max-w-5xl px-6 text-center">
+    <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 px-6">
+      <div className="mx-auto max-w-5xl">
         <motion.p
           initial={reduce ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-coral-deep mb-8"
+          className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-8"
         >
-          <span className="h-px w-8 bg-coral" />
-          3 Mentális Tűzfal
-          <span className="h-px w-8 bg-coral" />
+          AI · kognitív biztonság · kritikai gondolkodás
         </motion.p>
 
         <motion.h1
@@ -35,46 +26,53 @@ export function Hero() {
           </span>
         </motion.h1>
 
-        <motion.p
+        <motion.div
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
-          className="mt-8 text-lg md:text-xl text-ink-soft max-w-2xl mx-auto leading-relaxed text-balance"
+          className="mt-10 max-w-2xl space-y-5 text-lg md:text-xl leading-relaxed"
         >
-          Óvjuk és eddzük az emberi gondolkodást egy olyan világban, amely folyamatosan
-          dönteni akar helyettünk.
-        </motion.p>
+          <p className="text-foreground">
+            Az AI válaszol. Az internet véleményt mond. A világ sürget. De attól még nem biztos,
+            hogy nekünk is azonnal döntenünk kell.
+          </p>
+          <p className="text-ink-soft">
+            A figyelemről, az ítélőképességről és a döntéseinkről írok és beszélek. Arról, hogyan
+            őrizhetjük meg a gondolkodásunk szabadságát egy olyan világban, amely egyre több mindent
+            szeretne elvégezni helyettünk.
+          </p>
+        </motion.div>
 
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.65 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4"
         >
           <a
-            href="#firewalls"
-            className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-ink text-cream font-medium hover:bg-coral-deep transition-all shadow-elegant"
+            href="#gondolatok"
+            className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-coral text-cream font-medium hover:bg-coral-deep transition-colors"
           >
-            Felfedezem
-            <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" strokeWidth={2} />
+            Olvass bele a gondolataimba <span aria-hidden>↓</span>
           </a>
           <a
-            href="#andrea"
-            className="inline-flex items-center px-7 py-3.5 rounded-full border border-ink/20 text-ink hover:border-coral hover:text-coral transition-colors"
+            href="#eloadasok"
+            className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-ink/25 text-ink hover:border-coral hover:text-coral transition-colors"
           >
-            Megismerem Sophie-t
+            Előadások és témák
           </a>
         </motion.div>
-      </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs text-ink-soft tracking-widest uppercase"
-      >
-        <span className="block animate-bounce">↓</span>
-      </motion.div>
+        <motion.p
+          initial={reduce ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2, duration: 1 }}
+          className="mt-8 font-display text-sm text-coral-deep"
+        >
+          <span aria-hidden>↳ </span>Igen, ez a mondat is azért van itt, hogy megállítsa a
+          görgetést.
+        </motion.p>
+      </div>
     </section>
   );
 }
