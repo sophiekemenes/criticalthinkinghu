@@ -6,7 +6,7 @@ import { FadeUp } from "@/components/site/FadeUp";
 
 const PAGE_TITLE = "Human Risk Services · emberi kockázatkezelés · criticalthinking.hu";
 const PAGE_DESCRIPTION =
-  "Az emberi kockázatok nem állnak meg a tréning végén. Egyszeri Human Risk & Awareness Baseline felmérés és havi Hoxhunt Human Risk Care szakértői támogatás: a biztonságtudatossági adatokból döntések születnek.";
+  "Az emberi kockázatok nem állnak meg a tréning végén. Egyszeri Human Risk & Awareness Baseline felmérés és havi Human Risk Care szakértői támogatás a használt platform (például Hoxhunt vagy Microsoft Defender) mellé: a biztonságtudatossági adatokból döntések születnek.";
 
 export const Route = createFileRoute("/human-risk-services")({
   head: () => ({
@@ -37,7 +37,7 @@ function mailto(subject: string) {
 const questions = [
   "Tudjuk, mely üzleti értékek és hozzáférések igényelnek fokozott védelmet?",
   "Látjuk, hol jelentenek az emberi döntések tényleges kockázatot?",
-  "Tudjuk, mit kezdjünk a Hoxhunt riportjaival?",
+  "Tudjuk, mit kezdjünk a használt platform (például Hoxhunt, Microsoft Defender) riportjaival?",
   "Van kapacitásunk a mintázatok értelmezésére és a célzott beavatkozások követésére?",
 ];
 
@@ -56,7 +56,7 @@ const baselineDeliverables = [
 const careParts = [
   {
     title: "Értelmezés",
-    body: "Áttekintjük a Hoxhunt riportjait, a visszatérő kockázatokat és a lehetséges okokat.",
+    body: "Áttekintjük a platform riportjait, a visszatérő kockázatokat és a lehetséges okokat.",
   },
   {
     title: "Célzott beavatkozás",
@@ -252,19 +252,24 @@ function HumanRiskServicesPage() {
                 className="h-full flex flex-col rounded-xl border border-border/60 bg-card p-8 md:p-10"
               >
                 <p className="text-xs uppercase tracking-[0.2em] text-coral-deep mb-3">
-                  02 · Havidíjas szolgáltatás · Szakértői támogatás a Hoxhunt mögött
+                  02 · Havidíjas szolgáltatás · Szakértői támogatás a platform mögött
                 </p>
                 <h3 className="font-display text-2xl md:text-3xl leading-tight mb-2">
-                  Hoxhunt Human Risk Care
+                  Human Risk Care
                 </h3>
                 <p className="font-display text-lg text-coral-deep mb-5">
                   Mit mutatnak az adatok, és mit tegyünk velük?
                 </p>
                 <p className="text-ink-soft leading-relaxed mb-4">
-                  A Hoxhunt automatizált gyakorlással támogatja a biztonságtudatosságot és a jó
-                  szokások kialakulását. A Human Risk Care abban segít, hogy a rendelkezésre álló
-                  eredményekből érthető prioritások, célzott beavatkozások és követhető következő
-                  lépések szülessenek.
+                  A phishing-szimulációs és biztonságtudatossági platformok, például a Hoxhunt vagy
+                  a Microsoft Defender, automatizált gyakorlással támogatják a biztonságtudatosságot
+                  és a jó szokások kialakulását. A Human Risk Care abban segít, hogy a rendelkezésre
+                  álló eredményekből érthető prioritások, célzott beavatkozások és követhető
+                  következő lépések szülessenek.
+                </p>
+                <p className="text-ink-soft leading-relaxed mb-4">
+                  Nem számít, melyik platformot használja a szervezet: a szolgáltatás a meglévő
+                  eszköz mellé illeszkedik. Ha más megoldásod van, azt is megnézzük.
                 </p>
                 <p className="leading-relaxed mb-8">
                   Nem kell feltétlenül külön belső szakértőt alkalmaznod a program folyamatos
@@ -292,11 +297,11 @@ function HumanRiskServicesPage() {
                     <span className="text-base text-ink-soft">+ áfa, ha alkalmazandó</span>
                   </p>
                   <p className="text-sm text-ink-soft mb-6">
-                    A szolgáltatás a meglévő Hoxhunt-licencet egészíti ki, nem helyettesíti a
+                    A szolgáltatás a meglévő platformlicencet egészíti ki, nem helyettesíti a
                     platformot.
                   </p>
                   <a
-                    href={mailto("Érdekel a Hoxhunt Human Risk Care")}
+                    href={mailto("Érdekel a Human Risk Care")}
                     className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink text-cream text-sm font-medium hover:bg-coral-deep transition-colors"
                   >
                     Érdekel a Human Risk Care <ArrowRight className="h-4 w-4" />
@@ -365,7 +370,7 @@ function HumanRiskServicesPage() {
               </p>
               <p className="text-ink-soft leading-relaxed">
                 A Baseline nem helyettesíti a teljes körű technikai auditot vagy a formális
-                kockázatelemzést. A Human Risk Care a megvásárolt Hoxhunt-csomaghoz és a
+                kockázatelemzést. A Human Risk Care a szervezet által használt platformhoz és a
                 rendelkezésre álló adatokhoz igazodik. Meghatározott százalékos kockázatcsökkenést
                 nem garantál. A nagyobb kampányok, e-learning-fejlesztések, workshopok és
                 incidenskezelés külön egyeztetés tárgyát képezik.
