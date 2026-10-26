@@ -24,8 +24,8 @@ export function ContactFooter() {
             </FadeUp>
             <FadeUp delay={0.2}>
               <p className="text-cream/70 leading-relaxed mb-10">
-                Előadás, workshop vagy a 3 Mentális Tűzfal alkalmazása a te csapatodban?
-                Írj néhány sort a kihívásról — 2 munkanapon belül válaszolok.
+                Előadás, szakmai együttműködés vagy egy kérdés, amin érdemes elgondolkodni? Írj
+                néhány sort — 2 munkanapon belül válaszolok.
               </p>
             </FadeUp>
             <FadeUp delay={0.3}>
@@ -58,7 +58,11 @@ export function ContactFooter() {
         {/* Bottom bar */}
         <div className="border-t border-cream/10 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-cream/50">
           <div className="flex items-center gap-2">
-            <img src={logoWhiteReverse} alt="criticalthinking.hu" className="h-6 w-auto opacity-90" />
+            <img
+              src={logoWhiteReverse}
+              alt="criticalthinking.hu"
+              className="h-6 w-auto opacity-90"
+            />
           </div>
           <p>© {new Date().getFullYear()} Kemenes Andrea Sophie · Minden jog fenntartva.</p>
         </div>

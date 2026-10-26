@@ -5,13 +5,17 @@ import logoFullColor from "@/assets/brand/criticalthinking-logo-full-color.svg";
 import { LanguageToggle } from "@/components/site/LanguageToggle";
 
 const links = [
-  { href: "#firewalls", label: "3 Tűzfal" },
-  { href: "/cikkek", label: "Cikkek" },
-  { href: "/human-risk-services", label: "Human Risk Services" },
-  { href: "#andrea", label: "Rólam" },
-  { href: "#hamarosan", label: "Amin dolgozom" },
-  { href: "#kapcsolat", label: "Kapcsolat" },
+  { href: "/#gondolatok", label: "Gondolatok" },
+  { href: "/#eloadasok", label: "Előadások" },
+  { href: "/#modszer", label: "Módszer" },
+  { href: "/#rolam", label: "Rólam" },
+  { href: "/human-risk-services", label: "Szervezeteknek" },
+  { href: "/#kapcsolat", label: "Kapcsolat" },
 ];
+
+// A "/#..." bejegyzések főoldali horgonyok: sima <a>, így más oldalról is
+// a főoldal megfelelő részére visznek. A többi valódi route (router Link).
+const isAnchor = (href: string) => href.includes("#");
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -48,7 +52,7 @@ export function SiteHeader() {
             // A "/"-szal kezdődő bejegyzések valódi route-ok (pl. /cikkek) —
             // ezeket a router Link-jével navigáljuk, a többi (#...) csak
             // horgony-ugrás a főoldalon belül.
-            return l.href.startsWith("/") ? (
+            return !isAnchor(l.href) ? (
               <Link key={l.href} to={l.href} className={className}>
                 {l.label}
               </Link>
@@ -62,7 +66,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-3">
           <LanguageToggle lang="hu" />
           <a
-            href="#kapcsolat"
+            href="/#kapcsolat"
             className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium rounded-full bg-ink text-cream hover:bg-coral-deep transition-colors"
           >
             Beszéljünk
@@ -91,7 +95,7 @@ export function SiteHeader() {
                 "block py-4 font-display text-xl border-b border-border/50 text-foreground hover:text-coral transition-colors";
               return (
                 <li key={l.href}>
-                  {l.href.startsWith("/") ? (
+                  {!isAnchor(l.href) ? (
                     <Link to={l.href} className={className} onClick={() => setOpen(false)}>
                       {l.label}
                     </Link>
@@ -106,7 +110,7 @@ export function SiteHeader() {
           </ul>
           <div className="px-6 pb-8">
             <a
-              href="#kapcsolat"
+              href="/#kapcsolat"
               onClick={() => setOpen(false)}
               className="inline-flex items-center px-6 py-3 rounded-full bg-coral text-cream font-medium hover:bg-coral-deep transition-colors"
             >
