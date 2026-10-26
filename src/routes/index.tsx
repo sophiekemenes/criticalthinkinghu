@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site/SiteHeader";
 import { Hero } from "@/components/site/Hero";
 import { Tension } from "@/components/site/Tension";
 import { Familiar } from "@/components/site/Familiar";
+import { CatNote } from "@/components/site/CatNote";
 import { Thoughts } from "@/components/site/Thoughts";
 import { OnStage } from "@/components/site/OnStage";
 import { Method } from "@/components/site/Method";
@@ -39,6 +40,7 @@ function Index() {
       <Hero />
       <Tension />
       <Familiar />
+      <CatNote />
       <Thoughts />
       <OnStage />
       <Method />
