@@ -24,7 +24,7 @@ const past = [
   "WITSEC szakmai nap · 2025",
   "AI Business konferencia · 2025. november",
   "Future IT · 2025. november",
-  "ICT Enterprise · 2026",
+  "ICT Global Enterprise · 2026",
 ];
 const upcoming = [
   "WITSEC szakmai nap · 2026",
