@@ -32,14 +32,12 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.45 }}
           className="mt-10 max-w-2xl space-y-5 text-lg md:text-xl leading-relaxed"
         >
-          <p className="text-foreground">
-            Az AI válaszol. Az internet véleményt mond. A világ sürget. De attól még nem biztos,
-            hogy nekünk is azonnal döntenünk kell.
-          </p>
           <p className="text-ink-soft">
-            A figyelemről, az ítélőképességről és a döntéseinkről írok és beszélek. Arról, hogyan
-            őrizhetjük meg a gondolkodásunk szabadságát egy olyan világban, amely egyre több mindent
-            szeretne elvégezni helyettünk.
+            A figyelemről, az ítélőképességről és a döntéseinkről írok és beszélek. Arról, hogy
+            hogyan őrizhetjük meg a gondolkodásunk integritását egy olyan világban, amely egyre több
+            mindent szeretne elvégezni helyettünk, vagy elvégeztetni velünk. A kockázatokat
+            vizsgálom az információs, digitális és kibertérben, és legújabban a generatív AI-okkal
+            való interakciók során.
           </p>
         </motion.div>
 
@@ -50,10 +48,10 @@ export function Hero() {
           className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4"
         >
           <a
-            href="#gondolatok"
+            href="#modszer"
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-coral text-cream font-medium hover:bg-coral-deep transition-colors"
           >
-            Olvass bele a gondolataimba <span aria-hidden>↓</span>
+            Az A.I.D. keretrendszer <span aria-hidden>↓</span>
           </a>
           <a
             href="#eloadasok"
