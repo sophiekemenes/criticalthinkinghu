@@ -51,14 +51,34 @@ async function buildRoutes() {
     ...articles.map((a) => ({
       path: `/cikkek/${a.slug}`,
       outFile: `cikkek/${a.slug}/index.html`,
+      lastmod: a.date,
     })),
     { path: "/en", outFile: "en/index.html" },
     { path: "/en/articles", outFile: "en/articles/index.html" },
     ...articlesEn.map((a) => ({
       path: `/en/articles/${a.slug}`,
       outFile: `en/articles/${a.slug}/index.html`,
+      lastmod: a.date,
     })),
   ];
+}
+
+// Canonical origin (see CNAME). Routes listed here are excluded from sitemap.xml:
+// diagnostic pages that should not be indexed (robots.txt disallows them too).
+const SITE_ORIGIN = "https://www.criticalthinking.hu";
+const SITEMAP_EXCLUDE = new Set(["/encoding-test"]);
+
+function buildSitemap(routes) {
+  const urls = routes
+    .filter((r) => !SITEMAP_EXCLUDE.has(r.path))
+    .map((r) => {
+      // GitHub Pages serves each prerendered route as <path>/index.html, so the
+      // trailing-slash URL is the one that does not redirect.
+      const loc = `${SITE_ORIGIN}${r.path === "/" ? "/" : `${r.path}/`}`;
+      const lastmod = r.lastmod ? `\n    <lastmod>${r.lastmod}</lastmod>` : "";
+      return `  <url>\n    <loc>${loc}</loc>${lastmod}\n  </url>`;
+    });
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
 async function main() {
@@ -109,6 +129,9 @@ async function main() {
     await writeFile(outPath, page, "utf-8");
     console.log(`prerendered ${route.path} -> dist-ghpages/${route.outFile}`);
   }
+
+  await writeFile(path.join(distDir, "sitemap.xml"), buildSitemap(ROUTES), "utf-8");
+  console.log("wrote dist-ghpages/sitemap.xml");
 
   // index.spa.html itself was only a template; the real entry points are
   // the per-route files written above. Remove it so it doesn't ship as dead

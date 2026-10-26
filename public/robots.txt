@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /encoding-test/
+
+Sitemap: https://www.criticalthinking.hu/sitemap.xml

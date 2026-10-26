@@ -65,8 +65,13 @@ A lista „napra kész". Előadáscím és szerep nincs kiírva; csak megerősí
 - Cikkszámok: 5 magyar és 5 angol cikk van (az átadás 5 + 4-et írt).
 - Az A.I.D. mikroszekció egyelőre a Módszer részben van; a külön interaktív mikroséta későbbi etap.
 
+## Kész: sitemap és robots
+- `public/robots.txt`: mindent engedélyez, kivéve `/encoding-test/`, és hivatkozik a sitemapre.
+- `sitemap.xml`: a prerender script generálja build közben a route-listából (új cikk automatikusan bekerül, cikkeknél `lastmod` a cikk dátuma). Az `/encoding-test` kimarad.
+- Javasolt utólagos lépés: a sitemap beküldése a Google Search Console-ban.
+
 ## Következő lépés
-- `sitemap.xml` és `robots.txt` (GH Pages, statikus).
+- Sophie dönt a későbbi etap sorrendjéről.
 
 ## Későbbi etap
 - Mobilos átnézés az új sorrendre.
