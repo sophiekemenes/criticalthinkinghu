@@ -65,6 +65,15 @@ export function Familiar() {
             </FadeUp>
           ))}
         </div>
+
+        <FadeUp delay={0.1}>
+          <Link
+            to="/cikkek"
+            className="mt-10 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-ink text-cream font-medium hover:bg-coral-deep transition-colors"
+          >
+            Az összes gondolat egy helyen <span aria-hidden>→</span>
+          </Link>
+        </FadeUp>
       </div>
     </section>
   );

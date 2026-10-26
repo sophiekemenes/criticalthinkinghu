@@ -34,7 +34,7 @@ const upcoming = [
 
 export function OnStage() {
   return (
-    <section id="eloadasok" className="py-20 md:py-28 px-6">
+    <section id="eloadasok" className="py-20 md:py-28 px-6 border-t border-border/50">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
           <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">Előadások</p>

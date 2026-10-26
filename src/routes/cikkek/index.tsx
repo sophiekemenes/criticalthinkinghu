@@ -9,10 +9,11 @@ import { getAllArticles } from "@/content/articles";
 export const Route = createFileRoute("/cikkek/")({
   head: () => ({
     meta: [
-      { title: "Cikkek — criticalthinking.hu" },
+      { title: "Gondolatok — criticalthinking.hu" },
       {
         name: "description",
-        content: "Esszék a 3 Mentális Tűzfalról: figyelem, értelmezés, döntés — kritikus gondolkodás egy AI-jal átszőtt világban.",
+        content:
+          "Gondolatok az AI-ról, a figyelemről, az ítélőképességről és a döntésekről — kritikus gondolkodás egy olyan világban, amely folyamatosan dönteni akar helyettünk.",
       },
     ],
   }),
@@ -20,18 +21,28 @@ export const Route = createFileRoute("/cikkek/")({
 });
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("hu-HU", { year: "numeric", month: "long", day: "numeric" });
+  return new Date(iso).toLocaleDateString("hu-HU", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 function ArticlesIndex() {
   const articles = useMemo(() => getAllArticles(), []);
   const years = useMemo(
-    () => Array.from(new Set(articles.map((a) => new Date(a.date).getFullYear()))).sort((a, b) => b - a),
+    () =>
+      Array.from(new Set(articles.map((a) => new Date(a.date).getFullYear()))).sort(
+        (a, b) => b - a,
+      ),
     [articles],
   );
   const [yearFilter, setYearFilter] = useState<number | "all">("all");
 
-  const visible = yearFilter === "all" ? articles : articles.filter((a) => new Date(a.date).getFullYear() === yearFilter);
+  const visible =
+    yearFilter === "all"
+      ? articles
+      : articles.filter((a) => new Date(a.date).getFullYear() === yearFilter);
 
   return (
     <main className="bg-background text-foreground antialiased">
@@ -40,12 +51,12 @@ function ArticlesIndex() {
       <section className="pt-36 pb-24 md:pb-32 px-6">
         <div className="mx-auto max-w-3xl">
           <FadeUp>
-            <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">Cikkek</p>
+            <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">Gondolatok</p>
           </FadeUp>
           <FadeUp delay={0.05}>
             <h1 className="font-display text-4xl md:text-5xl leading-[1.1] mb-6 text-balance">
-              Esszék a{" "}
-              <span className="accent-mark">3 Mentális Tűzfalról.</span>
+              Az AI-ról, az emberi elméről és arról,{" "}
+              <span className="accent-mark">hogyan próbálunk továbbra is mi dönteni.</span>
             </h1>
           </FadeUp>
           <FadeUp delay={0.1}>

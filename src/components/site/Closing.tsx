@@ -6,17 +6,8 @@ const mail = (subject: string) =>
 
 export function Closing() {
   return (
-    <section className="py-20 md:py-28 px-6">
+    <section id="kapcsolatfelvetel" className="py-20 md:py-28 px-6">
       <div className="mx-auto max-w-6xl">
-        <FadeUp>
-          <h2 className="font-display text-3xl md:text-5xl leading-[1.1] mb-14 max-w-4xl text-balance">
-            A kérdés nem az, hogy gondolkodik-e helyettünk az AI.{" "}
-            <span className="accent-mark">
-              Hanem hogy tudjuk-e még, mikor kell nekünk gondolkodnunk.
-            </span>
-          </h2>
-        </FadeUp>
-
         <div className="grid md:grid-cols-3 gap-6">
           <FadeUp>
             <div className="h-full rounded-xl border border-border/60 bg-card p-7 flex flex-col">

@@ -5,7 +5,7 @@ import { Hero } from "@/components/site/Hero";
 import { Tension } from "@/components/site/Tension";
 import { Familiar } from "@/components/site/Familiar";
 import { CatNote } from "@/components/site/CatNote";
-import { Thoughts } from "@/components/site/Thoughts";
+import { ClaimCheck } from "@/components/site/ClaimCheck";
 import { OnStage } from "@/components/site/OnStage";
 import { Method } from "@/components/site/Method";
 import { About } from "@/components/site/About";
@@ -40,13 +40,17 @@ function Index() {
       <Hero />
       <Tension />
       <Familiar />
-      <CatNote />
-      <Thoughts />
-      <OnStage />
+      <section className="px-6 pb-20 md:pb-28">
+        <div className="mx-auto max-w-6xl">
+          <ClaimCheck />
+        </div>
+      </section>
       <Method />
       <About />
+      <OnStage />
       <ForOrganisations />
       <Closing />
+      <CatNote />
       <ContactFooter />
       <CatCameo />
     </main>

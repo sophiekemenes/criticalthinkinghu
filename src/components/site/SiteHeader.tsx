@@ -5,10 +5,10 @@ import logoFullColor from "@/assets/brand/criticalthinking-logo-full-color.svg";
 import { LanguageToggle } from "@/components/site/LanguageToggle";
 
 const links = [
-  { href: "/#gondolatok", label: "Gondolatok" },
-  { href: "/#eloadasok", label: "Előadások" },
+  { href: "/cikkek", label: "Gondolatok" },
   { href: "/#modszer", label: "Módszer" },
   { href: "/#rolam", label: "Rólam" },
+  { href: "/#eloadasok", label: "Előadások" },
   { href: "/human-risk-services", label: "Szervezeteknek" },
   { href: "/#kapcsolat", label: "Kapcsolat" },
 ];
