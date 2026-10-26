@@ -5,6 +5,7 @@ import { LanguageToggle } from "@/components/site/LanguageToggle";
 const links = [
   { href: "#firewalls", label: "3 Tűzfal" },
   { href: "/cikkek", label: "Cikkek" },
+  { href: "/human-risk-services", label: "Human Risk Services" },
   { href: "#andrea", label: "Rólam" },
   { href: "#hamarosan", label: "Amin dolgozom" },
   { href: "#kapcsolat", label: "Kapcsolat" },
