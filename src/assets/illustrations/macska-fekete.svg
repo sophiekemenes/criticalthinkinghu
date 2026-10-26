@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="56" viewBox="0 0 96 56" fill="#161615" role="img" aria-label="Kicsi fekete macska, oldalnézetből, futás közben">
+  <path d="M16 30 C4 28 2 14 8 8" stroke="#161615" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <ellipse cx="40" cy="30" rx="26" ry="11"/>
+  <circle cx="70" cy="22" r="9"/>
+  <polygon points="63,16 65,6 71,14"/>
+  <polygon points="69,14 75,6 78,17"/>
+  <circle cx="73" cy="21" r="1.6" fill="#F1EFE8"/>
+  <path d="M22 38 L14 52 M32 40 L28 54 M50 40 L58 54 M58 38 L72 50" stroke="#161615" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>
