@@ -31,7 +31,9 @@ export function Method() {
     <section id="modszer" className="py-20 md:py-28 px-6 bg-ink text-cream">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-coral mb-5">Módszer</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-coral mb-5">
+            Módszertan · saját pedagógiai keretrendszer
+          </p>
           <h2 className="font-display text-3xl md:text-5xl leading-[1.1] mb-5 max-w-3xl text-balance">
             Mielőtt az információból cselekvés lesz.
           </h2>
@@ -83,6 +85,15 @@ export function Method() {
                 észrevedd, megvizsgáld és tudatosan válassz.
               </p>
             </div>
+          </div>
+          <div className="mt-10">
+            <button
+              type="button"
+              disabled
+              className="inline-flex items-center px-6 py-3 rounded-full border border-cream/15 bg-cream/10 text-cream/45 text-sm font-medium cursor-not-allowed"
+            >
+              Részletes keretrendszer · hamarosan
+            </button>
           </div>
         </FadeUp>
       </div>

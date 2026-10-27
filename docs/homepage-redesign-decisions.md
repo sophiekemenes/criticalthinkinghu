@@ -21,15 +21,15 @@ Munkadokumentum a criticalthinking.hu főoldal újratervezéséhez. Forrás: a S
 1. **Hero:** H1 + egy bekezdés („A figyelemről, az ítélőképességről és a döntéseinkről írok és beszélek… A kockázatokat vizsgálom az információs, digitális és kibertérben, és legújabban a generatív AI-okkal való interakciók során."). Két gomb: „Az A.I.D. keretrendszer" (→ Módszer) és „Előadások és témák". Kis margójegyzet alatta. Az „Az AI válaszol. Az internet véleményt mond…" bekezdés kikerült.
 2. **Feszültség:** „Az AI gyorsabbá teszi a gondolkodást. De mit kezdünk azzal, amit közben kiszervezünk belőle?"
 3. **Ismerős?:** négy kártya, mindegyik mögött kész cikk. Alatta gomb: „Az összes gondolat egy helyen" → `/cikkek`.
-4. **„Egy állítás, amit érdemes megkérdőjelezni"** (tény / értelmezés / hipotézis kérdés): egyelőre marad.
-5. **Módszer:** A.I.D. és a három tűzfal; a munkafüzet „fejlesztés alatt".
+4. **Módszertan** („saját pedagógiai keretrendszer"): A.I.D. és a három tűzfal; a munkafüzet „fejlesztés alatt". Alatta szürke, nem kattintható gomb: „Részletes keretrendszer · hamarosan" (a külön aloldal még nincs; ha kész, a gomb élesre kapcsol).
 6. **Rólam:** „Az emberi tényező nem egy lábjegyzet."
 7. **Előadások:** négy téma + korábbi és következő szereplések.
 8. **Szervezeteknek:** Human Risk Services kártya (link az aloldalra).
 9. **Három út:** olvasóknak, rendezvényszervezőknek, szakmai partnereknek.
-10. **Macskás kártya** („Láttad a macskát?"), majd a „Beszéljünk" lábléc.
+10. **„Most te jössz"** (`YourTurn.tsx`): az A.I.D. a látogatón fut végig. **A** = macskás kártya („Láttad a macskát?"), **I** = „Egy állítás, amit érdemes megkérdőjelezni" (tény / értelmezés / hipotézis), **D** = „Innentől rajtad a döntés." + Sophie szövege + „Beszéljünk" gomb. Ezek a szekciók máshol már nincsenek (átköltöztek, nem másolódtak).
+11. **„Beszéljünk" lábléc.**
 
-Menü: Gondolatok · Módszer · Rólam · Előadások · Szervezeteknek · Kapcsolat.
+Menü: Gondolatok · Módszertan · Rólam · Előadások · Szervezeteknek · Kapcsolat.
 
 ## Elvetve / kikerült
 - „Tudtad?" blokk (forrás nélküli számok miatt).
