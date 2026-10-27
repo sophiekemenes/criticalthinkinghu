@@ -37,15 +37,7 @@ export function OnStage() {
     <section id="eloadasok" className="py-20 md:py-28 px-6 border-t border-border/50">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
-          <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-5">Előadások</p>
-          <h2 className="font-display text-3xl md:text-4xl leading-tight mb-5 max-w-3xl text-balance">
-            A képernyőn túl is van mondanivaló.
-          </h2>
-          <p className="text-ink-soft text-lg max-w-2xl mb-12">
-            Az AI-ról, a kiberbiztonságról és az emberi viselkedésről nem elég beszélni. Azt is meg
-            kell értenünk, mi történik közben a figyelmünkkel, az ítélőképességünkkel és a
-            döntéseinkkel.
-          </p>
+          <h2 className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-8">Előadások</h2>
         </FadeUp>
 
         <div className="grid sm:grid-cols-2 gap-6 mb-16">

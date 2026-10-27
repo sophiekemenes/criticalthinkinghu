@@ -45,7 +45,7 @@ function Index() {
       <ForOrganisations />
       <YourTurn />
       <Closing />
-      <ContactFooter />
+      <ContactFooter tight />
       <CatCameo />
     </main>
   );

@@ -5,10 +5,16 @@ import logoWhiteReverse from "@/assets/brand/criticalthinking-logo-white-reverse
 
 const RECIPIENT = "info@criticalthinking.hu";
 
-export function ContactFooter() {
+// tight: a főoldalon a Closing sáv közvetlenül fölötte van, ott a tartalom ugyanabban az
+// oszlopban (max-w-6xl) indul, mint a többi szekció, kevesebb felső térrel és kisebb képpel.
+export function ContactFooter({ tight = false }: { tight?: boolean }) {
   return (
-    <footer id="kapcsolat" className="bg-ink text-cream pt-24 md:pt-32">
-      <div className="mx-auto max-w-7xl px-6">
+    <footer
+      id="kapcsolat"
+      className={`bg-ink text-cream ${tight ? "pt-12 md:pt-14" : "pt-24 md:pt-32"}`}
+    >
+      {/* max-w-[75rem] = max-w-6xl + a px-6 oldalpárnázat, hogy a tartalom egy vonalban legyen a Closing kártyáival */}
+      <div className={`mx-auto px-6 ${tight ? "max-w-[75rem]" : "max-w-7xl"}`}>
         <div className="grid lg:grid-cols-12 gap-14 pb-20 items-center">
           {/* Left side */}
           <div className="lg:col-span-5">
@@ -43,7 +49,7 @@ export function ContactFooter() {
 
           {/* Photo */}
           <FadeUp delay={0.2} className="lg:col-span-7">
-            <div className="relative">
+            <div className={`relative ${tight ? "lg:max-w-[36rem] lg:ml-auto" : ""}`}>
               <div className="absolute -inset-4 bg-gradient-sunset rounded-3xl opacity-20 blur-3xl" />
               <img
                 src={andreaStage}

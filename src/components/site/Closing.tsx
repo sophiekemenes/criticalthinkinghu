@@ -45,7 +45,7 @@ export function Closing() {
           </FadeUp>
         </div>
       </div>
-      <div className="mx-auto max-w-6xl mt-16 md:mt-20 border-b border-cream/15" aria-hidden />
+      <div className="mx-auto max-w-6xl mt-12 md:mt-14 border-b border-cream/15" aria-hidden />
     </section>
   );
 }
