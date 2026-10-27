@@ -105,7 +105,7 @@ Jelenleg **két, egymástól független** deploy-út létezik ebben a projektben
 
 ### Amit a GitHub Pages NEM tud
 
-Nincs szerver, csak statikus fájlok — build-time prerender van, nem runtime SSR. Tehát: **nincs API, nincs form-küldés, nincs email, nincs adatbázis.** Ezért került ki korábban a működő kapcsolati form a láblécből (a `mailto:` alapú megoldás böngészőnként megbízhatatlan volt).
+A `sitemap.xml` a prerender script (`scripts/prerender-ghpages.mjs`) futásakor generálódik a route-listából, a `robots.txt` a `public/` mappából jön. Nincs szerver, csak statikus fájlok — build-time prerender van, nem runtime SSR. Tehát: **nincs API, nincs form-küldés, nincs email, nincs adatbázis.** Ezért került ki korábban a működő kapcsolati form a láblécből (a `mailto:` alapú megoldás böngészőnként megbízhatatlan volt).
 
 ---
 
