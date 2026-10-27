@@ -17,6 +17,7 @@ export function About() {
         <FadeUp className="md:col-span-5">
           <div className="relative max-w-sm mx-auto md:max-w-none">
             <div
+              data-arc-start
               className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border-2 border-coral"
               aria-hidden
             />

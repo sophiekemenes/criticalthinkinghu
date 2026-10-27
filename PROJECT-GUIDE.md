@@ -62,7 +62,8 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 | `Tension.tsx` | a feszültség egy mondatban |
 | `Familiar.tsx` | „Ismerős?" kártyák, mindegyik mögött kész cikk |
 | `YourTurn.tsx` (+ `CatNote.tsx`, `ClaimCheck.tsx`) | „A.I.D. módszertan a gyakorlatban" (felirat: „Most te jössz"), három kártya egymás mellett (mobilon egymás alatt): A = macskás kártya, I = „tény / értelmezés / hipotézis" mini-interakció (+ link a torzítás-térképre), D = felhívás a Beszéljünk részhez |
-| `OnStage.tsx` | előadási témák + megerősített szereplések |
+| `OnStage.tsx` | előadási témák (négy kártya egy íven) + megerősített szereplések |
+| `ArcConnector.tsx` | a Rólam + Előadások köré (index.tsx `relative` wrapper) rajzolt korall ív: asztalon a Rólam fotókeretéből indul és a kártyák fölött halad, mobilon (<640 px) a kártyák bal oldalán fut; méréssel, csak a böngészőben rajzolódik. Elvárja a `[data-arc-start]` (About), `[data-arc-label]` és `[data-arc-card]` (OnStage) jelölőket |
 | `Method.tsx` | A.I.D. és a három tűzfal (görgetésre bekapcsol) |
 | `About.tsx` | Rólam |
 | `ForOrganisations.tsx` | Human Risk Services kártya |

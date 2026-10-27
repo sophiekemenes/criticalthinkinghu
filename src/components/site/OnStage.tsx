@@ -37,17 +37,28 @@ export function OnStage() {
     <section id="eloadasok" className="py-20 md:py-28 px-6 border-t border-border/50">
       <div className="mx-auto max-w-6xl">
         <FadeUp>
-          <h2 className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-8">Előadások</h2>
+          {/* lg-n a felirat hátteret kap, hogy a Rólam fotókeretéből induló ív (ArcConnector) mögötte átfusson */}
+          <h2 data-arc-label className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-8 lg:relative lg:z-10 lg:inline-block lg:bg-background lg:px-3 lg:-ml-3 lg:py-1">
+            Előadások
+          </h2>
         </FadeUp>
 
-        <div className="grid sm:grid-cols-2 gap-6 mb-16">
+        {/* Négy kártya egy íven (az ív vonalát az ArcConnector rajzolja). lg-n: a két szélső lejjebb, a két középső
+            följebb. Mobilon (<640 px): a két középső kártya be van húzva, így a bal oldali ív jobbra domborodik. */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {topics.map((t, i) => (
-            <FadeUp key={t.title} delay={0.05 * i}>
-              <div className="h-full rounded-xl border border-border/60 bg-card p-7">
-                <h3 className="font-display text-xl mb-3">{t.title}</h3>
-                <p className="text-ink-soft leading-relaxed">{t.body}</p>
-              </div>
-            </FadeUp>
+            <div
+              key={t.title}
+              data-arc-card
+              className={`relative z-10 ${i === 0 || i === topics.length - 1 ? "lg:mt-14" : "lg:mb-14 max-sm:ml-8"}`}
+            >
+              <FadeUp delay={0.05 * i} className="h-full">
+                <div className="h-full rounded-xl border border-border/60 bg-card p-7 lg:p-6">
+                  <h3 className="font-display text-xl mb-3">{t.title}</h3>
+                  <p className="text-ink-soft leading-relaxed">{t.body}</p>
+                </div>
+              </FadeUp>
+            </div>
           ))}
         </div>
 

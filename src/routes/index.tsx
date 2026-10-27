@@ -6,6 +6,7 @@ import { Tension } from "@/components/site/Tension";
 import { Familiar } from "@/components/site/Familiar";
 import { YourTurn } from "@/components/site/YourTurn";
 import { OnStage } from "@/components/site/OnStage";
+import { ArcConnector } from "@/components/site/ArcConnector";
 import { Method } from "@/components/site/Method";
 import { About } from "@/components/site/About";
 import { ForOrganisations } from "@/components/site/ForOrganisations";
@@ -40,8 +41,11 @@ function Index() {
       <Tension />
       <Familiar />
       <Method />
-      <About />
-      <OnStage />
+      <div className="relative">
+        <ArcConnector />
+        <About />
+        <OnStage />
+      </div>
       <ForOrganisations />
       <YourTurn />
       <Closing />
