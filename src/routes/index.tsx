@@ -43,8 +43,8 @@ function Index() {
       <About />
       <OnStage />
       <ForOrganisations />
-      <Closing />
       <YourTurn />
+      <Closing />
       <ContactFooter />
       <CatCameo />
     </main>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 
 const claim = "Az AI gyorsabbá teszi a munkánkat.";
 
@@ -28,11 +29,11 @@ export function ClaimCheck() {
   const picked = options.find((o) => o.id === choice);
 
   return (
-    <div className="rounded-xl border border-border/60 bg-card p-7 md:p-9">
+    <div className="flex flex-col h-full">
       <p className="text-xs uppercase tracking-[0.2em] text-coral-deep mb-4">
         Egy állítás, amit érdemes megkérdőjelezni
       </p>
-      <p className="font-display text-2xl md:text-3xl leading-snug mb-6">„{claim}”</p>
+      <p className="font-display text-xl md:text-2xl leading-snug mb-6">„{claim}”</p>
       <p className="text-ink-soft mb-3">Szerinted mi ez?</p>
       <div role="group" aria-label="Az állítás besorolása" className="flex flex-wrap gap-3">
         {options.map((o) => (
@@ -54,10 +55,17 @@ export function ClaimCheck() {
       <div aria-live="polite" className="mt-6 min-h-[5.5rem]">
         {picked && <p className="leading-relaxed">{picked.reply}</p>}
       </div>
-      <p className="mt-2 text-sm text-ink-soft">
+      <p className="mt-auto pt-2 text-sm text-ink-soft">
         Ez nem teszt, és nem pontoz. Csak azt mutatja meg, milyen gyorsan kezelünk tényként egy
         mondatot, amely még pontosítást igényel.
       </p>
+      <Link
+        to="/cikkek/$slug"
+        params={{ slug: "a-torzitas-terkep" }}
+        className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-ink hover:text-coral transition-colors"
+      >
+        Az értelmezésről bővebben: A torzítás-térkép <span aria-hidden>→</span>
+      </Link>
     </div>
   );
 }

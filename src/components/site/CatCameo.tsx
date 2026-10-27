@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-export function CatShape({ className }: { className?: string }) {
+// outline: fehér körvonal a macska alatt, hogy sötét háttéren is látsszon (a futó macskánál).
+export function CatShape({ className, outline }: { className?: string; outline?: boolean }) {
   return (
     <svg
       width="96"
@@ -9,8 +10,25 @@ export function CatShape({ className }: { className?: string }) {
       viewBox="0 0 96 56"
       fill="currentColor"
       className={className}
+      style={outline ? { overflow: "visible" } : undefined}
       aria-hidden
     >
+      {outline && (
+        <g
+          fill="#fff"
+          stroke="#fff"
+          strokeWidth="6"
+          strokeLinejoin="round"
+          strokeLinecap="round"
+        >
+          <path d="M16 30 C4 28 2 14 8 8" strokeWidth="10" fill="none" />
+          <ellipse cx="40" cy="30" rx="26" ry="11" />
+          <circle cx="70" cy="22" r="9" />
+          <polygon points="63,16 65,6 71,14" />
+          <polygon points="69,14 75,6 78,17" />
+          <path d="M22 38 L14 52 M32 40 L28 54 M50 40 L58 54 M58 38 L72 50" strokeWidth="10" fill="none" />
+        </g>
+      )}
       <path
         d="M16 30 C4 28 2 14 8 8"
         stroke="currentColor"
@@ -63,10 +81,10 @@ export function CatCameo() {
           animate={{ x: "110vw" }}
           transition={{ duration: 6, ease: "linear" }}
           onAnimationComplete={() => setDone(true)}
-          className="absolute bottom-0 text-ink"
+          className="absolute bottom-1 text-ink"
         >
           <motion.div animate={{ y: [0, -5, 0] }} transition={{ duration: 0.35, repeat: Infinity }}>
-            <CatShape />
+            <CatShape outline />
           </motion.div>
         </motion.div>
       </div>

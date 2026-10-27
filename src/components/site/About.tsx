@@ -48,8 +48,8 @@ export function About() {
           </p>
           <p className="text-lg leading-relaxed mb-6">
             Itt kutatásokat, hétköznapi helyzeteket és gyakorlati modelleket kapcsolok össze. Nem
-            azért, mert mindenre tudom a választ. Hanem mert érdemes megtanulni, hogyan vizsgáljuk
-            meg a válaszokat.
+            azért, mert mindenre tudom a választ, hanem mert szeretném hogy a <em>jó</em> kérdések
+            legyenek feltéve.
           </p>
           <ul className="flex flex-wrap gap-2 mb-8">
             {crossings.map((c) => (

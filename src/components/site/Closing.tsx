@@ -1,69 +1,51 @@
 import { Link } from "@tanstack/react-router";
 import { FadeUp } from "./FadeUp";
 
-const mail = (subject: string) =>
-  `mailto:info@criticalthinking.hu?subject=${encodeURIComponent(subject)}`;
+const cardClass =
+  "h-full rounded-xl border border-cream/25 bg-cream/5 p-7 flex flex-col transition-colors hover:border-coral";
+const labelClass = "text-xs uppercase tracking-[0.2em] text-coral mb-3";
+const bodyClass = "text-cream/75 leading-relaxed";
+const linkClass = "mt-auto text-sm font-medium text-coral hover:underline";
 
+// Szegmentált CTA: a főoldal alján, közvetlenül a Beszéljünk (ContactFooter) fölött, sötét sávban.
 export function Closing() {
   return (
-    <section id="kapcsolatfelvetel" className="py-20 md:py-28 px-6">
+    <section id="kapcsolatfelvetel" className="pt-16 md:pt-20 px-6 bg-ink text-cream">
       <div className="mx-auto max-w-6xl">
         <div className="grid md:grid-cols-3 gap-6">
           <FadeUp>
-            <div className="h-full rounded-xl border border-border/60 bg-card p-7 flex flex-col">
-              <p className="text-xs uppercase tracking-[0.2em] text-coral-deep mb-3">Olvasóknak</p>
+            <div className={cardClass}>
+              <p className={labelClass}>Olvasóknak</p>
               <p className="font-display text-xl leading-snug mb-3">Van még egy gondolatod?</p>
-              <p className="text-ink-soft leading-relaxed mb-6">
+              <p className={`${bodyClass} mb-6`}>
                 Olvass tovább, és nézd meg, milyen kérdéseket érdemes újragondolni.
               </p>
-              <Link
-                to="/cikkek"
-                className="mt-auto text-sm font-medium text-coral-deep hover:underline"
-              >
+              <Link to="/cikkek" className={linkClass}>
                 Böngészd a cikkeket <span aria-hidden>→</span>
               </Link>
             </div>
           </FadeUp>
           <FadeUp delay={0.05}>
-            <div className="h-full rounded-xl border border-border/60 bg-card p-7 flex flex-col">
-              <p className="text-xs uppercase tracking-[0.2em] text-coral-deep mb-3">
-                Rendezvényszervezőknek
-              </p>
+            <div className={cardClass}>
+              <p className={labelClass}>Rendezvényszervezőknek</p>
               <p className="font-display text-xl leading-snug mb-3">
                 Van egy közönséged. Nekem van néhány kényelmetlenül érdekes kérdésem.
               </p>
-              <p className="text-ink-soft leading-relaxed mb-6">
-                Beszéljünk előadásról, témáról és közönségről.
-              </p>
-              <a
-                href={mail("Előadást szeretnék")}
-                className="mt-auto text-sm font-medium text-coral-deep hover:underline"
-              >
-                Előadást szeretnék <span aria-hidden>→</span>
-              </a>
+              <p className={bodyClass}>Beszéljünk előadásról, témáról és közönségről.</p>
             </div>
           </FadeUp>
           <FadeUp delay={0.1}>
-            <div className="h-full rounded-xl border border-border/60 bg-card p-7 flex flex-col">
-              <p className="text-xs uppercase tracking-[0.2em] text-coral-deep mb-3">
-                Szakmai partnereknek
-              </p>
+            <div className={cardClass}>
+              <p className={labelClass}>Szakmai partnereknek</p>
               <p className="font-display text-xl leading-snug mb-3">
                 Az emberi tényezőről nem csak beszélgetni lehet. Dolgozni is lehet vele.
               </p>
-              <p className="text-ink-soft leading-relaxed mb-6">
-                Közös gondolkodás, workshop vagy szakmai együttműködés.
-              </p>
-              <a
-                href={mail("Szakmai együttműködés")}
-                className="mt-auto text-sm font-medium text-coral-deep hover:underline"
-              >
-                Kapcsolatfelvétel <span aria-hidden>→</span>
-              </a>
+              <p className={bodyClass}>Közös gondolkodás, workshop vagy szakmai együttműködés.</p>
             </div>
           </FadeUp>
         </div>
       </div>
+      <div className="mx-auto max-w-6xl mt-16 md:mt-20 border-b border-cream/15" aria-hidden />
     </section>
   );
 }

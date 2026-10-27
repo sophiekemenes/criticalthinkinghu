@@ -32,7 +32,7 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 
 ## 3. Hol van a tartalom (mit hol kell szerkeszteni)
 
-- `src/routes/index.tsx` — a főoldal: itt van felsorolva, milyen szekciók milyen sorrendben jelennek meg (`SiteHeader → Hero → Tension → Familiar → Method → About → OnStage → ForOrganisations → Closing → YourTurn → ContactFooter` (+ `CatCameo`); a tervezési döntések a `docs/homepage-redesign-decisions.md`-ben vannak). Itt van a route `head()`-je is (title, meta description, og/twitter tagek).
+- `src/routes/index.tsx` — a főoldal: itt van felsorolva, milyen szekciók milyen sorrendben jelennek meg (`SiteHeader → Hero → Tension → Familiar → Method → About → OnStage → ForOrganisations → YourTurn → Closing → ContactFooter` (+ `CatCameo`); a tervezési döntések a `docs/homepage-redesign-decisions.md`-ben vannak). Itt van a route `head()`-je is (title, meta description, og/twitter tagek).
 - `src/routes/__root.tsx` — a HTML burok: közös `<head>`, betűtípus-linkek, globális providerek, `<Outlet />`.
 - **A blog-rendszer** (2026. szeptember óta) manifest-vezérelt, nem egy-fájl-egy-route elven megy:
   - `src/content/articles.json` — **az egyetlen forrás** minden cikk metaadatához (`slug`, `title`, `subtitle?`, `description`, `excerpt`, `date`, `categories`, `custom?`). Ez hajtja a listát, a dinamikus cikkoldalt ÉS a GH Pages prerender route-generálását.
@@ -61,12 +61,12 @@ Fontos: a routert **nem** cseréljük (nincs react-router-dom). Tailwind v4-ben 
 | `Hero.tsx` | nyitó szekció, „Tiszta gondolkodás. Saját döntés." |
 | `Tension.tsx` | a feszültség egy mondatban |
 | `Familiar.tsx` | „Ismerős?" kártyák, mindegyik mögött kész cikk |
-| `YourTurn.tsx` (+ `CatNote.tsx`, `ClaimCheck.tsx`) | „Most te jössz": A = macskás kártya, I = „tény / értelmezés / hipotézis" mini-interakció, D = felhívás a Beszéljünk részhez |
+| `YourTurn.tsx` (+ `CatNote.tsx`, `ClaimCheck.tsx`) | „A.I.D. módszertan a gyakorlatban" (felirat: „Most te jössz"), három kártya egymás mellett (mobilon egymás alatt): A = macskás kártya, I = „tény / értelmezés / hipotézis" mini-interakció (+ link a torzítás-térképre), D = felhívás a Beszéljünk részhez |
 | `OnStage.tsx` | előadási témák + megerősített szereplések |
 | `Method.tsx` | A.I.D. és a három tűzfal (görgetésre bekapcsol) |
 | `About.tsx` | Rólam |
 | `ForOrganisations.tsx` | Human Risk Services kártya |
-| `Closing.tsx` | záró, három út |
+| `Closing.tsx` | három út (szegmentált CTA): sötét sáv közvetlenül a Beszéljünk fölött |
 | `CatCameo.tsx` | egyszeri macska-geg görgetéskor (csökkentett mozgásnál nem jelenik meg) |
 | `MentalFirewalls.tsx` | jelenleg nincs a főoldalon; a tervezett külön framework-oldal alapanyaga |
 | `ContactFooter.tsx` | lábléc + kapcsolat |

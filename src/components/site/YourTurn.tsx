@@ -1,66 +1,73 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { CatNote } from "./CatNote";
 import { ClaimCheck } from "./ClaimCheck";
 import { FadeUp } from "./FadeUp";
 
-const rows = [
+const steps = [
   { letter: "A", word: "Attention", action: "Észreveszem" },
   { letter: "I", word: "Interpretation", action: "Megvizsgálom" },
   { letter: "D", word: "Decision", action: "Választok" },
 ];
 
-function Row({ index, children }: { index: number; children: React.ReactNode }) {
-  const r = rows[index];
+function Decision() {
   return (
-    <FadeUp>
-      <div className="grid md:grid-cols-[9rem_1fr] gap-4 md:gap-8 py-8 border-t border-border/60">
-        <div>
-          <p className="font-display text-5xl md:text-6xl text-coral leading-none" aria-hidden>
-            {r.letter}
-          </p>
-          <p className="mt-2 text-xs uppercase tracking-[0.2em] text-ink-soft">
-            {r.word} · {r.action}
-          </p>
-        </div>
-        <div>{children}</div>
-      </div>
-    </FadeUp>
+    <div className="flex flex-col h-full">
+      <h3 className="font-display text-xl md:text-2xl leading-snug mb-4">
+        Innentől rajtad a döntés.
+      </h3>
+      <p className="text-ink-soft leading-relaxed mb-6">
+        Ha úgy látod, hogy saját magadnak, a cégednek, vagy a rendezvényednek szüksége lehet az
+        együttműködésünkre; ha észrevettél hasznosítható, értékes szempontokat, akkor tudod, hol
+        érsz el. Fordulj hozzám bizalommal.
+      </p>
+      <a
+        href="#kapcsolat"
+        className="mt-auto self-start inline-flex items-center px-6 py-3 rounded-full bg-ink text-cream font-medium hover:bg-coral-deep transition-colors"
+      >
+        Beszéljünk
+      </a>
+    </div>
   );
 }
 
-// A főoldal záró íve: az A.I.D. most a látogatón fut végig, és a Beszéljünk részhez vezet.
+const content = [<CatNote key="a" />, <ClaimCheck key="i" />, <Decision key="d" />];
+
+// A főoldal záró íve: az A.I.D. most a látogatón fut végig (három kártya, mint a Módszertanban),
+// és a Beszéljünk részhez vezet.
 export function YourTurn() {
+  const reduce = useReducedMotion();
   return (
-    <section id="most-te-jossz" className="px-6 pb-16 md:pb-20">
-      <div className="mx-auto max-w-4xl">
+    <section id="most-te-jossz" className="px-6 pt-20 md:pt-28 pb-16 md:pb-20">
+      <div className="mx-auto max-w-6xl">
         <FadeUp>
           <p className="text-xs uppercase tracking-[0.25em] text-coral-deep mb-4">Most te jössz</p>
-          <h2 className="font-display text-3xl md:text-4xl leading-[1.1] mb-10 text-balance">
-            Észreveszed. Megvizsgálod. Döntesz.
+          <h2 className="font-display text-3xl md:text-4xl leading-[1.1] mb-5 text-balance">
+            A.I.D. módszertan a gyakorlatban
           </h2>
+          <p className="text-ink-soft text-lg max-w-2xl mb-10">
+            Elég hogy csak itt jártál, és máris belekóstolhatsz a saját tűzfalaid működésébe:
+          </p>
         </FadeUp>
 
-        <Row index={0}>
-          <CatNote />
-        </Row>
-        <Row index={1}>
-          <ClaimCheck />
-        </Row>
-        <Row index={2}>
-          <h3 className="font-display text-2xl md:text-3xl leading-snug mb-4">
-            Innentől rajtad a döntés.
-          </h3>
-          <p className="text-ink-soft text-lg leading-relaxed max-w-2xl mb-6">
-            Ha úgy látod, hogy saját magadnak, a cégednek, vagy a rendezvényednek szüksége lehet az
-            együttműködésünkre; ha észrevettél hasznosítható, értékes szempontokat, akkor tudod, hol
-            érsz el. Fordulj hozzám bizalommal.
-          </p>
-          <a
-            href="#kapcsolat"
-            className="inline-flex items-center px-6 py-3 rounded-full bg-ink text-cream font-medium hover:bg-coral-deep transition-colors"
-          >
-            Beszéljünk
-          </a>
-        </Row>
+        <div className="grid lg:grid-cols-3 gap-6">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.letter}
+              initial={reduce ? false : { opacity: 0.25, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: reduce ? 0 : i * 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col rounded-xl border border-border/60 bg-card p-7"
+            >
+              <p className="font-display text-5xl text-coral mb-4" aria-hidden>
+                {s.letter}
+              </p>
+              <p className="font-display text-xl mb-1">{s.word}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-ink-soft mb-5">{s.action}</p>
+              <div className="flex-1">{content[i]}</div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

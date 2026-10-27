@@ -25,8 +25,8 @@ Munkadokumentum a criticalthinking.hu főoldal újratervezéséhez. Forrás: a S
 6. **Rólam:** „Az emberi tényező nem egy lábjegyzet."
 7. **Előadások:** négy téma + korábbi és következő szereplések.
 8. **Szervezeteknek:** Human Risk Services kártya (link az aloldalra).
-9. **Három út:** olvasóknak, rendezvényszervezőknek, szakmai partnereknek.
-10. **„Most te jössz"** (`YourTurn.tsx`): az A.I.D. a látogatón fut végig. **A** = macskás kártya („Láttad a macskát?"), **I** = „Egy állítás, amit érdemes megkérdőjelezni" (tény / értelmezés / hipotézis), **D** = „Innentől rajtad a döntés." + Sophie szövege + „Beszéljünk" gomb. Ezek a szekciók máshol már nincsenek (átköltöztek, nem másolódtak).
+9. **„A.I.D. módszertan a gyakorlatban"** (`YourTurn.tsx`, felirat: „Most te jössz"): az A.I.D. a látogatón fut végig, három egymás melletti kártyában, mint a Módszertan (mobilon egymás alatt). Bevezető: „Elég hogy csak itt jártál, és máris belekóstolhatsz a saját tűzfalaid működésébe:". **A** = macskás kártya („Láttad a macskát?", link: A figyelmed kiskutya), **I** = „Egy állítás, amit érdemes megkérdőjelezni" (tény / értelmezés / hipotézis; alatta link: A torzítás-térkép), **D** = „Innentől rajtad a döntés." + Sophie szövege + „Beszéljünk" gomb. Ezek a szekciók máshol már nincsenek (átköltöztek, nem másolódtak).
+10. **Három út** (`Closing.tsx`, sötét sáv a „Beszéljünk" fölött, szürke keretes kártyákkal): olvasóknak (link: `/cikkek`), rendezvényszervezőknek, szakmai partnereknek. Csak az olvasói kártyán van link, a másik kettő a lábléc elérhetőségére épít.
 11. **„Beszéljünk" lábléc.**
 
 Menü: Gondolatok · Módszertan · Rólam · Előadások · Szervezeteknek · Kapcsolat.
