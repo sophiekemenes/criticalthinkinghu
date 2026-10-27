@@ -6,7 +6,7 @@ import { LanguageToggle } from "@/components/site/LanguageToggle";
 
 const links = [
   { href: "/cikkek", label: "Gondolatok" },
-  { href: "/#modszer", label: "Módszer" },
+  { href: "/#modszer", label: "Módszertan" },
   { href: "/#rolam", label: "Rólam" },
   { href: "/#eloadasok", label: "Előadások" },
   { href: "/human-risk-services", label: "Szervezeteknek" },
