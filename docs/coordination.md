@@ -18,7 +18,7 @@ Sophie egyszerre mindig egy sessionnel dolgozik. A különböző sessionök visz
 
 - Az igazság forrása a GitHub `main`. Minden új munka onnan indul (`git fetch`, majd a friss `main`-re építünk).
 - A helyi gépen a `C:\dev\criticalthinkinghu` példányt több session is használja. Egy push kiviheti a másik session még nem élesre szánt commitjait is. Push előtt `git fetch` és ellenőrzés, nyers piszkozatot nem commitolunk.
-- A `main`-re kerülő változás azonnal éles (GitHub Pages). PR-ben dolgozunk, Sophie mergel.
+- A `main`-re kerülő változás azonnal éles (GitHub Pages). A felhős session PR-ben dolgozik. Sophie kérésére (2026-10-27) a helyi session olvasztja össze a felhős PR-eket: lehúzza az ágat, `--no-ff` merge a `main`-be, push (a GitHub ettől a PR-t merge-eltnek jelöli). Sophie-nak nem kell a GitHub weboldalán dolgoznia.
 - Forrásra épülő új állítás nem kerülhet ki a `sources - article ideas.md` nélkül (lásd lent).
 
 ## Cikkekre vonatkozó szabályok
@@ -32,13 +32,14 @@ Sophie egyszerre mindig egy sessionnel dolgozik. A különböző sessionök visz
 
 ## Átfedési pontok (itt léphetünk egymás lábára)
 
-- `PROJECT-GUIDE.md`: mindkét session szerkeszti. Felhő: szekciósorrend, komponenstábla, sitemap-megjegyzés (a `main`-ben). Helyi: cikkmezők (`image`, `imageAlt`), og:image és dátumszabály, a végleges szövegek helye (helyi commit, felküldésre vár).
+- `PROJECT-GUIDE.md`: mindkét session szerkeszti. Felhő: szekciósorrend, komponenstábla, sitemap-megjegyzés (a `main`-ben). Helyi: cikkmezők (`image`, `imageAlt`), og:image és dátumszabály, a végleges szövegek helye (a `main`-ben, 2026-10-27 óta).
 - `scripts/prerender-ghpages.mjs`: a route-lista és a sitemap itt épül. Új route felvételekor ide is kell nyúlni.
 - A cikkek `lastmod` dátuma a sitemapben a cikkek `date` mezőjéből jön.
 
 ## Ami csak a helyi gépen van (nincs a repóban)
 
-- `CriticalThinkingHU\Articles\research\sources - article ideas.md` (14,7 KB, 2026-09-21) és a heti kutatási, cikktéma-összefoglalók (`heti-kutatas-*`, `heti-cikktemak-*`). Felhő-session nem éri el, a helyi session pedig még nem olvasta végig. Amíg nincs a repóban, forrásra támaszkodó állítás nem kerül ki.
+- A forrásindex másolata a repóban van: `docs/sources-article-ideas.md` (2026-10-27). Az eredeti (`CriticalThinkingHU\Articles\research\sources - article ideas.md`) a helyi gépen frissül, utána újra be kell másolni. A repó nyilvános. A helyi session még nem olvasta végig a tartalmát, forrásra támaszkodó állítást csak az eredeti forrás ellenőrzése után szabad kitenni.
+- A heti kutatási és cikktéma-összefoglalók (`heti-kutatas-*`, `heti-cikktemak-*`) csak a helyi gépen vannak.
 - Sophie két valódi fotója: `CriticalThinkingHU\fotok\` (színpadi kép, GBS-es kép). A repó csak az egyiket használja (`src/assets/andrea-stage.png`). A "dokumentarista fotók" munkához innen érdemes kezdeni.
 
 ## Nyitott, még nem eldöntött
