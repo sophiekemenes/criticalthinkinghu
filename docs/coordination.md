@@ -18,7 +18,7 @@ Sophie egyszerre mindig egy sessionnel dolgozik. A különböző sessionök visz
 
 - Az igazság forrása a GitHub `main`. Minden új munka onnan indul (`git fetch`, majd a friss `main`-re építünk).
 - A helyi gépen a `C:\dev\criticalthinkinghu` példányt több session is használja. Egy push kiviheti a másik session még nem élesre szánt commitjait is. Push előtt `git fetch` és ellenőrzés, nyers piszkozatot nem commitolunk.
-- A `main`-re kerülő változás azonnal éles (GitHub Pages). A felhős session PR-ben dolgozik. Sophie kérésére (2026-10-27) a helyi session olvasztja össze a felhős PR-eket: lehúzza az ágat, `--no-ff` merge a `main`-be, push (a GitHub ettől a PR-t merge-eltnek jelöli). Sophie-nak nem kell a GitHub weboldalán dolgoznia.
+- A `main`-re kerülő változás azonnal éles (GitHub Pages). A felhős session PR-ben dolgozik. Az összeolvasztás alapesetben Sophie dolga a GitHub weboldalán. **Alternatíva, nem szabály:** ha Sophie a gépnél dolgozik, és kifejezetten kéri, a helyi session is összeolvaszthatja (lehúzza az ágat, `--no-ff` merge a `main`-be, push; a GitHub ettől a PR-t merge-eltnek jelöli). Magától a helyi session nem olvaszt össze felhős PR-t. Ha Sophie nem fér hozzá a helyi géphez, ő olvasztja össze a GitHubon.
 - Forrásra épülő új állítás nem kerülhet ki a `sources - article ideas.md` nélkül (lásd lent).
 
 ## Cikkekre vonatkozó szabályok
