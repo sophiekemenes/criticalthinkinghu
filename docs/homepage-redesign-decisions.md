@@ -90,3 +90,10 @@ A lista „napra kész". Előadáscím és szerep nincs kiírva; csak megerősí
 
 ## Munkamód
 Lassan, kis lépésekben: egyszerre egy lépés és egy döntés. Előbb vázlat, a jóváhagyás után kód.
+
+## Kognitív edzőterem (`/kognitiv-edzoterem`, 2026-11-08)
+- Önálló aloldal Sophie „kognitív edzőterem" előadásához, ugyanazzal az ívvel: bemelegítés (bevezető + Sophie története a három tűzfal születéséről), miért kell edzeni, három állomás (Figyelem, Értelmezés, Döntés), őszintén a bizonyosságról, kkv, nyomtatható edzésterv, zárás.
+- Cím: „Az agyad is izom. Nagyjából." (Sophie választása). A szövegek a Sophie hangja skill szerint szerkesztve.
+- A menüben nem szerepel, közvetlen linkkel (pl. QR-kód az előadás végén) érhető el. A sitemapben benne van.
+- Interakciók: egy perc csend (a fülváltást csak a böngésző számolja), három állítás szavazása, indoklás AI nélkül (a szöveg nem mentődik), nyomtatható edzésterv. Nincs napló, nincs adattárolás.
+- Kutatások (mind ellenőrizve az eredeti összefoglalóból): Bergh és mtsai. (arXiv 2609.21194), Chen és mtsai. (arXiv 2610.31481), Wilson és mtsai. (Science 2014), Mann és Cadman (2014), Who Is Sycophantic to Whom? (arXiv 2610.31579), Looks Fine to Me (arXiv 2610.27801), Rahman és mtsai. (arXiv 2609.25586), Lindebaum és mtsai. (AMR), IBM CHRO 2026, Maier és mtsai. (arXiv 2609.20143). A forrásindexbe (`sources - article ideas.md`, helyi gép) még fel kell venni: Bergh, Chen, Who Is Sycophantic, Looks Fine, Rahman, Wilson, Mann.
