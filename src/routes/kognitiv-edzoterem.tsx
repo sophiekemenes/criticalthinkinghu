@@ -553,6 +553,65 @@ const habits = [
   },
 ];
 
+// "Miért fontos ez neked?" kártyák. Számot vagy állítást csak a fenti kutatáskártyákból veszünk át,
+// mindig a kártyán szereplő bizonytalansággal együtt.
+const audiences: { who: string; title: string; points: ReactNode[] }[] = [
+  {
+    who: "Magánszemélynek",
+    title: "A döntéseid a tieid maradnak.",
+    points: [
+      "Az AI folyékonyan és magabiztosan válaszol, akkor is, ha téved. Egy kísérletben a résztvevők a magabiztosan előadott hamis állítások nagyjából kétharmadát átvették (preprint, kis minta).",
+      "Aki naponta kérdez AI-tól, az üzenetek tömegében észre sem veszi, mikor adta át a gondolkodást. Az edzésterv három szokása ezt a pillanatot adja vissza.",
+      "Nem kell hozzá új alkalmazás vagy előképzettség: egy perc csend, egy kérdés és egy mondat indoklás.",
+    ],
+  },
+  {
+    who: "Gondolkodónak",
+    title: "A gondolkodásod az eszközöd.",
+    points: [
+      "Aki a gondolkodásából él (szakértő, író, elemző, tanácsadó), annak a szerzőségérzet is a munkájához tartozik. Egy kísérletben a ChatGPT-s csoport jobb kódot adott le, de a kód kisebb részét érezte a sajátjának (45% kontra 81%, preprint, kis minta).",
+      "A neveden megy ki, amit leírsz. Ha nem tudod megindokolni, miért állítod, az állítás az AI-é, a felelősség viszont a tiéd.",
+      "Az ötletek ott születnek, ahol van hely a gondolkodásnak. Az egyperces csend ezt a helyet adja vissza (az unalom és a kreativitás kapcsolata kisebb kísérletekből ismert).",
+    ],
+  },
+  {
+    who: "KKV-tulajdonosnak",
+    title: "Nálad nincs második szem.",
+    points: [
+      "Egy nagyvállalatnál van compliance, audit és kolléga, aki ránéz. Egy KKV-ban a tulajdonos és a csapat feje az egyetlen tűzfal.",
+      "Az AI-val gyorsan elkészül az ajánlat, a szerződéstervezet, az árazás. A gyorsaság addig nyereség, amíg valaki tényleg elolvassa. Egy kísérletben az AI-val programozók gyakran nagyon magabiztosak voltak, miközben nem vették észre a néma hibát (preprint, kis minta).",
+      "Kis cégben egy rosszul értelmezett válasz hamar a saját számládon látszik.",
+    ],
+  },
+  {
+    who: "Nagyvállalatnak",
+    title: "A szabályzat mellé gondolkodás is kell.",
+    points: [
+      "Az AI-használati szabályzat, a jóváhagyott eszközök és a képzések szükségesek. Azt viszont nem döntik el, hogy a kolléga észreveszi-e, ha a válasz meggyőző, de téves.",
+      "Több ellenőrzési pont akkor ér sokat, ha mindegyik mögött van gondolkodás. Ha mindenki ugyanattól a géptől kér segítséget, a második és a harmadik szem ugyanazt a választ nézi.",
+      "Egy nyolc perces közös edzés előadásként vagy workshopként sok kollégához elér egyszerre.",
+    ],
+  },
+  {
+    who: "Vezetőnek",
+    title: "Te írod alá, amit AI segített.",
+    points: [
+      "Ha a csapatod AI-val dolgozza elő a döntéseidet, ami az asztalodra kerül, az jól fogalmazott és magabiztos. A magabiztos hang még nem igazolja a tartalmat.",
+      "Egy lektorált, de elméleti modell szerint ott építi az AI a vezetői ítélőképességet, ahol a döntést meg kell indokolni. Ezt a kultúrát te alakítod ki.",
+      "Egy mondat elég hozzá egy megbeszélésen: mi az indokod, az AI említése nélkül?",
+    ],
+  },
+  {
+    who: "HR-nek",
+    title: "A képzési tervben a helye.",
+    points: [
+      "Az IBM felmérésében a HR-vezetők 71%-a alapvetőnek tartotta, hogy a dolgozók felülbírálják az AI-t. A dolgozóknak csak 29%-a tartotta fontosnak a saját ítélőképességét (iparági felmérés, önbevallás).",
+      "Ezt a rést egy AI-eszköz bevezetése még nem zárja be. Szokás kell hozzá, a szokás pedig gyakorlással alakul.",
+      "A három állomás (figyelem, értelmezés, döntés) workshop-vázként is használható, a nyomtatható edzéstervet pedig ki lehet osztani a résztvevőknek.",
+    ],
+  },
+];
+
 // Nyomtatáskor csak az edzésterv-kártya másolata látszik egy külön gyökérben
 // (lásd styles.css, html.printing-plan), így a nyomat egy oldal marad.
 function printPlan() {
@@ -847,16 +906,38 @@ function CognitiveGymPage() {
         </div>
       </section>
 
-      {/* Kkv */}
+      {/* Miért fontos: célcsoportonként */}
       <section className="py-20 md:py-28 px-6 bg-ink text-cream">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <FadeUp>
-            <p className="text-xs uppercase tracking-[0.25em] text-coral mb-4">Miért kkv-kérdés?</p>
-            <p className="text-xl md:text-2xl leading-relaxed text-cream/85 max-w-3xl mb-8">
-              Egy nagyvállalatnál van compliance, audit és második szem. Egy kkv-ban a tulajdonos és
-              a csapat feje az egyetlen tűzfal.
+            <p className="text-xs uppercase tracking-[0.25em] text-coral mb-4">Miért fontos?</p>
+            <h2 className="font-display text-3xl md:text-5xl leading-[1.1] mb-6 max-w-3xl text-balance">
+              Miért fontos ez neked?
+            </h2>
+            <p className="text-xl md:text-2xl leading-relaxed text-cream/85 max-w-3xl mb-12">
+              A három állomás mindenkinek ugyanaz. A tét attól függ, hol ülsz.
             </p>
-            <p className="font-display text-3xl md:text-5xl leading-[1.1] text-balance">
+          </FadeUp>
+          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 mb-16">
+            {audiences.map((a) => (
+              <FadeUp key={a.who}>
+                <div className="h-full rounded-xl border border-cream/15 bg-cream/5 p-6 md:p-7">
+                  <p className="text-xs uppercase tracking-[0.2em] text-coral mb-3">{a.who}</p>
+                  <h3 className="font-display text-xl md:text-2xl leading-snug mb-4">{a.title}</h3>
+                  <ul className="space-y-3 text-[15px] leading-relaxed text-cream/85">
+                    {a.points.map((p, i) => (
+                      <li key={i} className="flex gap-3">
+                        <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </FadeUp>
+            ))}
+          </div>
+          <FadeUp>
+            <p className="font-display text-3xl md:text-5xl leading-[1.1] text-balance max-w-4xl">
               Az AI-ba mindenki fektet. Az emberbe, aki használja, alig valaki.
             </p>
           </FadeUp>
