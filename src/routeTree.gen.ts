@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PenzugyiOnvedelemRouteImport } from './routes/penzugyi-onvedelem'
+import { Route as KognitivEdzoteremRouteImport } from './routes/kognitiv-edzoterem'
 import { Route as HumanRiskServicesRouteImport } from './routes/human-risk-services'
 import { Route as EncodingTestRouteImport } from './routes/encoding-test'
 import { Route as IndexRouteImport } from './routes/index'
@@ -22,6 +23,11 @@ import { Route as EnArticlesSlugRouteImport } from './routes/en/articles/$slug'
 const PenzugyiOnvedelemRoute = PenzugyiOnvedelemRouteImport.update({
   id: '/penzugyi-onvedelem',
   path: '/penzugyi-onvedelem',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KognitivEdzoteremRoute = KognitivEdzoteremRouteImport.update({
+  id: '/kognitiv-edzoterem',
+  path: '/kognitiv-edzoterem',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HumanRiskServicesRoute = HumanRiskServicesRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
   '/human-risk-services': typeof HumanRiskServicesRoute
+  '/kognitiv-edzoterem': typeof KognitivEdzoteremRoute
   '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
   '/human-risk-services': typeof HumanRiskServicesRoute
+  '/kognitiv-edzoterem': typeof KognitivEdzoteremRoute
   '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek': typeof CikkekIndexRoute
@@ -92,6 +100,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/encoding-test': typeof EncodingTestRoute
   '/human-risk-services': typeof HumanRiskServicesRoute
+  '/kognitiv-edzoterem': typeof KognitivEdzoteremRoute
   '/penzugyi-onvedelem': typeof PenzugyiOnvedelemRoute
   '/cikkek/$slug': typeof CikkekSlugRoute
   '/cikkek/': typeof CikkekIndexRoute
@@ -105,6 +114,7 @@ export interface FileRouteTypes {
     | '/'
     | '/encoding-test'
     | '/human-risk-services'
+    | '/kognitiv-edzoterem'
     | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek/'
@@ -116,6 +126,7 @@ export interface FileRouteTypes {
     | '/'
     | '/encoding-test'
     | '/human-risk-services'
+    | '/kognitiv-edzoterem'
     | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek'
@@ -127,6 +138,7 @@ export interface FileRouteTypes {
     | '/'
     | '/encoding-test'
     | '/human-risk-services'
+    | '/kognitiv-edzoterem'
     | '/penzugyi-onvedelem'
     | '/cikkek/$slug'
     | '/cikkek/'
@@ -139,6 +151,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EncodingTestRoute: typeof EncodingTestRoute
   HumanRiskServicesRoute: typeof HumanRiskServicesRoute
+  KognitivEdzoteremRoute: typeof KognitivEdzoteremRoute
   PenzugyiOnvedelemRoute: typeof PenzugyiOnvedelemRoute
   CikkekSlugRoute: typeof CikkekSlugRoute
   CikkekIndexRoute: typeof CikkekIndexRoute
@@ -154,6 +167,13 @@ declare module '@tanstack/react-router' {
       path: '/penzugyi-onvedelem'
       fullPath: '/penzugyi-onvedelem'
       preLoaderRoute: typeof PenzugyiOnvedelemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kognitiv-edzoterem': {
+      id: '/kognitiv-edzoterem'
+      path: '/kognitiv-edzoterem'
+      fullPath: '/kognitiv-edzoterem'
+      preLoaderRoute: typeof KognitivEdzoteremRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/human-risk-services': {
@@ -219,6 +239,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EncodingTestRoute: EncodingTestRoute,
   HumanRiskServicesRoute: HumanRiskServicesRoute,
+  KognitivEdzoteremRoute: KognitivEdzoteremRoute,
   PenzugyiOnvedelemRoute: PenzugyiOnvedelemRoute,
   CikkekSlugRoute: CikkekSlugRoute,
   CikkekIndexRoute: CikkekIndexRoute,

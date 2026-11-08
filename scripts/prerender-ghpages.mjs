@@ -48,6 +48,7 @@ async function buildRoutes() {
     { path: "/cikkek", outFile: "cikkek/index.html" },
     { path: "/penzugyi-onvedelem", outFile: "penzugyi-onvedelem/index.html" },
     { path: "/human-risk-services", outFile: "human-risk-services/index.html" },
+    { path: "/kognitiv-edzoterem", outFile: "kognitiv-edzoterem/index.html" },
     ...articles.map((a) => ({
       path: `/cikkek/${a.slug}`,
       outFile: `cikkek/${a.slug}/index.html`,
